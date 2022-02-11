@@ -4,5 +4,6 @@ import Search from './Search';
 import Img from '../components/Img';
 import ImgInfo from './ImgInfo';
 import TagList from './TagList';
+import Toggle from './Toggle';
 
-export { Img, Header, ImgList, Search, ImgInfo, TagList };
+export { Img, Header, ImgList, Search, ImgInfo, TagList, Toggle };

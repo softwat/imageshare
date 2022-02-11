@@ -38,7 +38,7 @@ Button.defaultProps = {
 
 const ElButton = styled.button`
     width: ${props => props.width};
-    background-color: lightBlue;
+    background-color: red;
     color: #ffffff;
     padding: 12px 0px;
     box-sizing: border-box;
@@ -62,6 +62,9 @@ const LikeButton = styled.button`
     vertical-align: middle;
     border: none;
     border-radius: 50px;
+    &:hover {
+        background-color: red;
+    }
 `;
 
 export default Button;

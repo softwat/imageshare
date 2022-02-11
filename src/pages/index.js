@@ -1,3 +1,4 @@
 import Main from './Main';
+import MyProfile from './MyProfile';
 
-export { Main };
+export { Main, MyProfile };

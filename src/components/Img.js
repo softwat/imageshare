@@ -18,9 +18,9 @@ const Img = props => {
 const ImgContainer = styled.div`
     position: relative;
     border: 1px solid black;
-    width: 400px;
+    width: 200px;
     height: 400px;
-    margin: 100px;
+    margin: 10px;
 `;
 
 export default Img;

@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ImgList, Header } from '../components/index.js';
+import { ImgList } from '../components/index.js';
 
 const Main = props => {
     return (
         <React.Fragment>
             <MainContainer>
-                <Header />
                 <ImgList />
             </MainContainer>
         </React.Fragment>

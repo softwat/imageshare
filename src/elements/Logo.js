@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const Logo = props => {
+    const { history } = props;
     return (
         <React.Fragment>
-            <LogoContainer>Logo</LogoContainer>
+            <LogoContainer onClick={() => history.push('/')}>
+                Logo
+            </LogoContainer>
         </React.Fragment>
     );
 };

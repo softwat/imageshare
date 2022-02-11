@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Tag = props => {
     return (
         <React.Fragment>
-            <TagContainer>Tag</TagContainer>
+            <TagContainer>#Tag</TagContainer>
         </React.Fragment>
     );
 };
@@ -12,7 +12,7 @@ const Tag = props => {
 const TagContainer = styled.div`
     border: 1px solid black;
     /* width: 50px; */
-    font-size: 40px;
+    font-size: 10%;
 `;
 
 export default Tag;

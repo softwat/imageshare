@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
+import { configureStore } from './redux/configureStore';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const history = createBrowserHistory(); //히스토리 객체 반환
+const store = configureStore(history); //configureStore.js의 함수 실행
+
+ReactDOM.render(
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
+    </Provider>,
+    document.getElementById('root')
+);
 reportWebVitals();
