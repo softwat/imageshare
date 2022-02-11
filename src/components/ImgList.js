@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Img } from '../elements/index.js';
+import { Img } from './index.js';
 
 const ImgList = props => {
     return (

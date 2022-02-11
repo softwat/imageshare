@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Button = props => {
-    const { text, _onClick, is_float, margin, width, padding } = props;
+    const { text, _onClick, is_abs, margin, width, padding } = props;
 
-    if (is_float) {
+    if (is_abs) {
         return (
             <React.Fragment>
-                <FloatButton onClick={_onClick}>{text}</FloatButton>
+                <LikeButton onClick={_onClick}>{text}</LikeButton>
             </React.Fragment>
         );
     }
@@ -30,7 +30,7 @@ const Button = props => {
 Button.defaultProps = {
     text: false,
     _onClick: () => {},
-    is_float: false,
+    is_abs: false,
     margin: false,
     width: '100%',
     padding: '12px 0px',
@@ -47,17 +47,17 @@ const ElButton = styled.button`
     ${props => (props.margin ? `margin: ${props.margin};` : '')}
 `;
 
-const FloatButton = styled.button`
+const LikeButton = styled.button`
     width: 50px;
     height: 50px;
-    background-color: #212121;
+    background-color: pink;
     color: #ffffff;
     box-sizing: border-box;
-    font-size: 36px;
+    /* font-size: 36px; */
     font-weight: 800;
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
+    position: absolute;
+    bottom: 48%;
+    right: 42%;
     text-align: center;
     vertical-align: middle;
     border: none;
