@@ -48,6 +48,7 @@ const ElButton = styled.button`
 `;
 
 const LikeButton = styled.button`
+    opacity: 0;
     width: 50px;
     height: 50px;
     background-color: pink;

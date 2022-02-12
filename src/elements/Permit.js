@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Permit = props => {
-    const { is_login } = props;
+import { useSelector } from 'react-redux';
 
-    if (is_login) {
-        return <React.Fragment>{props.children}</React.Fragment>;
-    }
-    return null;
+const Permit = props => {
+    const user = useSelector(state => state.user);
+
+    return user.is_login ? (
+        <React.Fragment>{props.children}</React.Fragment>
+    ) : null;
 };
 
 export default Permit;

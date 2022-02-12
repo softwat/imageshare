@@ -5,11 +5,12 @@ import { ImgList, Toggle } from '../components/index.js';
 import { Button } from '../elements/index.js';
 
 const MyProfile = props => {
+    const { history } = props;
     return (
         <React.Fragment>
             <MyProfileContainer>
                 <Toggle />
-                <ImgList />
+                <ImgList history={history} />
             </MyProfileContainer>
         </React.Fragment>
     );

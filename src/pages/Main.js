@@ -4,10 +4,11 @@ import styled from 'styled-components';
 import { ImgList } from '../components/index.js';
 
 const Main = props => {
+    console.log(props);
     return (
         <React.Fragment>
             <MainContainer>
-                <ImgList />
+                <ImgList {...props} />
             </MainContainer>
         </React.Fragment>
     );
