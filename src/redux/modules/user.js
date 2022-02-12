@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { addCookie, delCookie } from "../../shared/cookie";
-import { apis } from "../../shared/api";
 
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";

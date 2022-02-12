@@ -30,4 +30,8 @@ const TagListS = styled.ul`
     color: #ff81c6;
   }
 `;
+
+TagList.defaultProps = {
+  tags: ["xoxo", "dodo"],
+};
 export default TagList;

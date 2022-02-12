@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 const Input = (props) => {
-  const { id, type, placeholder, onChange } = props;
+  const { id, type, placeholder, onChange, label } = props;
   return (
     <InputStyle>
       <label htmlFor={id} onChange={onChange}>
