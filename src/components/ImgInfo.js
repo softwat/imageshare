@@ -16,6 +16,7 @@ const ImgInfo = props => {
 export default ImgInfo;
 
 const ImgInfoContainer = styled.div`
+    opacity: 0;
     position: absolute;
     border: 1px solid black;
     width: 100%;
