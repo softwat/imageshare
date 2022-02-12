@@ -1,14 +1,12 @@
 import React from "react";
-import { sha256 } from "sha256";
 import { useDispatch, useSelector } from "react-redux";
-import { history } from "../redux/configureStore";
-import { apis } from "../shared/api";
-import { actionCreators as userActions } from "../redux/modules/user";
-
 import styled from "styled-components";
-import { LoginStyle } from "./Login";
 import Input from "../element/Input";
 import BlockWrap from "../components/BlockWrap";
+import { LoginStyle } from "./Login";
+
+import { emailCheck, loginInCheck, pwdCheck } from "../shared/common";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -16,11 +14,22 @@ const SignUp = (props) => {
   const [formInput, setFormInput] = React.useState({});
 
   const signUpClick = () => {
-    const { id, email, nickname, pwd, pwdCheck } = formInput;
+    const { id, email, nickname, pwd, re_pwd } = formInput;
 
-    if (!id || !email || !nickname || !pwd || !pwdCheck) {
+    if (!id || !email || !nickname || !pwd || !re_pwd) {
       alert("빈 칸을 모두 채워 주세요 :)");
-    } else if (pwd !== pwdCheck) {
+    } else if (!emailCheck(email)) {
+      alert("이메일 형식이 아닙니다.");
+      return;
+    } else if (!loginInCheck(id)) {
+      alert("아이디는 영문 대소문자와 숫자를 포함한 최소 3자 이상입니다.");
+      return;
+    } else if (pwdCheck(pwd) === false) {
+      alert("비밀번호는 최소 4글자 이상입니다.");
+      return;
+    } else if (pwd.search(id) > -1) {
+      return alert("비밀번호에 아이디가 포함 되어 있습니다.");
+    } else if (pwd !== re_pwd) {
       alert("비밀번호가 서로 같지 않습니다. :)");
       return;
     } else {
@@ -80,7 +89,7 @@ const SignUp = (props) => {
         />
         <Input
           label="패스워드 재입력"
-          id="pwdCheck"
+          id="re_pwd"
           type="text"
           placeholder="비밀번호를 재입력해주세요"
           onChange={onChange}

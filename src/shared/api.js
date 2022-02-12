@@ -9,7 +9,7 @@ api.defaults.headers.common["Authorization"] = "success";
 const TEST_URL = (site) => `http://localhost:3003/${site}`;
 
 export const apis = {
-  signup: (id, email, pwd, nickname) =>
+  signup: ({ id, email, pwd, nickname }) =>
     // api.post("/user/signup", {
     api.post(TEST_URL("signup"), {
       login_id: id,
@@ -18,13 +18,15 @@ export const apis = {
       nickname: nickname,
     }),
 
-  login: (id, pwd) =>
+  login: ({ id, pwd }) =>
     api.post(TEST_URL("login"), {
       login_id: id,
       password: pwd,
     }),
 
-  createArticle: (uid, image, tags, date) =>
+  logout: () => api.get(TEST_URL("")),
+
+  createArticle: ({ uid, image, tags, date }) =>
     api.post(TEST_URL("pictures"), {
       uid: uid,
       image_url: image,
@@ -32,10 +34,9 @@ export const apis = {
       created_date: date,
     }),
 
-  loginCheck: (id) =>
-    api.get(TEST_URL("idCheck")).then((res) => {
-      console.log(res);
-    }),
+  imageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
+
+  detailArticle: () => api.get(TEST_URL("/detailArc")),
 
   // logOut: () => api.get(TEST_URL("logout")),
 
