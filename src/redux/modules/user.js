@@ -6,10 +6,12 @@ import { apis } from "../../shared/api";
 const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const SET_USER = "SET_USER";
+const GET_USER = "GET_USER";
 
 const logIn = createAction(LOG_IN, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const getUser = createAction(GET_USER, (user) => ({ user }));
 
 const initialState = {
   user: null,
@@ -68,6 +70,7 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
+    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
@@ -76,6 +79,7 @@ const actionCreators = {
   logIn,
   setUser,
   logOut,
+  getUser,
   loginAction,
   signUpDB,
   loginCheck,
