@@ -8,47 +8,45 @@ import BlockWrap from "../components/BlockWrap";
 const Login = () => {
   const dispatch = useDispatch();
   const [formInput, setFormInput] = React.useState({
-    login_id: "",
-    password: "",
+    id: "",
+    pwd: "",
   });
 
   // const [isLogin, setIsLogin] = React.useState(false);
-
   const onChange = (e) => {
-    const input_id = e.target.id;
-    const input_value = e.target.value;
+    const id = e.target.id;
+    const value = e.target.value;
 
     setFormInput({
       ...formInput,
-      [input_id]: input_value,
+      [id]: value,
     });
   };
 
   const loginClick = () => {
     //axios로 DB로 보낼 데이타
     //쿠키용
-    dispatch(userActions.loginAction({ user: "coco" }));
+    console.log(formInput);
+    dispatch(userActions.loginAction(formInput.id));
   };
 
   return (
     <BlockWrap>
       <LoginStyle>
         <h2>Login</h2>
-        <div>
-          <span>login</span>
-          <span>nonono</span>
-        </div>
         <div className="input_form">
           <Input
-            id="login_id"
+            id="id"
             type="text"
+            label="아이디"
             placeholder="아이디를 입력해주세요"
             onChange={onChange}
           />
           <Input
-            id="password"
+            id="pwd"
             type="password"
-            placeholder="패스워드를 입력해주세요"
+            label="비밀번호"
+            placeholder="비밀번호를 입력해주세요"
             onChange={onChange}
           />
         </div>
