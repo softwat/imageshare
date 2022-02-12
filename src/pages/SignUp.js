@@ -1,57 +1,31 @@
 import React from "react";
+import { sha256 } from "sha256";
+import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 import { apis } from "../shared/api";
-
-import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+
 import styled from "styled-components";
+import { LoginStyle } from "./Login";
 import Input from "../element/Input";
 import BlockWrap from "../components/BlockWrap";
-import { LoginStyle } from "./Login";
-import { duration } from "moment";
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
   const isOkUserId = useSelector((state) => state.user.user_id);
-  const [checkId, setCheckId] = React.useState(false);
   const [formInput, setFormInput] = React.useState({});
 
   const signUpClick = () => {
     const { id, email, nickname, pwd, pwdCheck } = formInput;
-    if (!id) {
-      alert("아이디를 입력해주세요:)");
-      return;
-    } else if (checkId === false) {
-      alert("아이디 중복확인 해주세요");
-      return;
-    } else if (!email) {
-      alert("이메일을 입력해주세요:)");
-      return;
-    } else if (!nickname) {
-      alert("닉네임을 입력해주세요:)");
-      return;
-    } else if (!pwd) {
-      alert("비밀번호를 입력해주세요:)");
-      return;
-    } else if (!pwdCheck) {
-      alert("비밀번를 다시한번 입력해주세요:)");
-      return;
+
+    if (!id || !email || !nickname || !pwd || !pwdCheck) {
+      alert("빈 칸을 모두 채워 주세요 :)");
     } else if (pwd !== pwdCheck) {
       alert("비밀번호가 서로 같지 않습니다. :)");
       return;
+    } else {
+      dispatch(userActions.signUpApi(formInput));
     }
-    //dispatch(userActions.signUpDB(formInput));
-
-    apis
-      .signup(id, email, pwd, nickname)
-      .then(() => {
-        console.log("login success");
-        history.replace("/");
-      })
-      .catch((err) => {
-        console.log("no login so sad");
-        console.log(err);
-      });
   };
 
   const onChange = (e) => {
@@ -64,19 +38,14 @@ const SignUp = (props) => {
     });
   };
 
-  const idDupliCheck = () => {
-    console.log(formInput.id);
-    // dispatch(userActions.loginCheck(formInput.id));
-    apis
-      .loginCheck(formInput.id)
-      .then(() => {
-        console.log("good");
-      })
-      .catch(() => {
-        console.log("not good");
-      });
-    setCheckId(isOkUserId);
-  };
+  // const idDupliCheck = () => {
+  //   if (!formInput.id) {
+  //     alert("아이디를 먼저 입력해주세요");
+  //     return;
+  //   } else {
+  //     dispatch(userActions.loginCheckApi(formInput.id));
+  //   }
+  // };
   return (
     <BlockWrap>
       <LoginStyle>
@@ -88,13 +57,6 @@ const SignUp = (props) => {
           placeholder="아이디를 입력해주세요"
           onChange={onChange}
         />
-        <DupluBtn
-          className="duplicate_btn"
-          onClick={() => {
-            idDupliCheck();
-          }}>
-          중복확인
-        </DupluBtn>
         <Input
           label="이메일"
           id="email"

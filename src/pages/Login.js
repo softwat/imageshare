@@ -24,10 +24,11 @@ const Login = () => {
   };
 
   const loginClick = () => {
+    const { id, pwd } = formInput;
     //axios로 DB로 보낼 데이타
     //쿠키용
     console.log(formInput);
-    dispatch(userActions.loginAction(formInput.id));
+    dispatch(userActions.loginActionApi(id, pwd));
   };
 
   return (
