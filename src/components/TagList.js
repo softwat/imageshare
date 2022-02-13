@@ -7,7 +7,6 @@ const TagList = (props) => {
     <React.Fragment>
       <TagListS>
         {tags.map((tag, idx) => {
-          console.log(tag);
           return <li key={idx}>#{tag}</li>;
         })}
       </TagListS>
