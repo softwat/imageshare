@@ -14,18 +14,16 @@ const TEST_URL = (site) => `http://localhost:3003/${site}`;
 
 export const apis = {
   signup: ({ id, email, pwd, nickname }) =>
-    // api.post("/user/signup", {
     api.post(TEST_URL("signup"), {
-      username: id,
+      login_id: id,
       email: email,
       password: pwd,
       nickname: nickname,
     }),
-  login: ({ id, pwd }) =>
-    api.post(TEST_URL("login"), {
-      username: id,
-      password: pwd,
-    }),
+
+  login: ({ id, pwd }) => {
+    return api.get(TEST_URL("login")).then((res) => res);
+  },
 
   logout: () => api.get(TEST_URL("")),
 

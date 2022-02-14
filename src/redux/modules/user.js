@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { addCookie, delCookie } from "../../shared/cookie";
-import { apis } from "../../shared/api";
+import { apis, api } from "../../shared/api";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -18,9 +18,8 @@ const initialState = {
 };
 
 // 회원가입 미들웨어 api
-
 const signUpApi = (user) => {
-  return function (dispatch, { history }) {
+  return function (dispatch, getState, { history }) {
     apis
       .signup(user)
       .then((res) => {
@@ -34,7 +33,7 @@ const signUpApi = (user) => {
             email: user.email,
           })
         );
-        // history.replace("/");
+        history.replace("/");
       })
       .catch((err) => {
         console.log("no signup so sad");
@@ -45,16 +44,17 @@ const signUpApi = (user) => {
 
 // 로그인 미들웨어 api
 const loginActionApi = (user) => {
-  return function (dispatch, getState, { history }) {
-    apis
+  return async function (dispatch, { history }) {
+    await apis
       .login(user)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         dispatch.setUser({
           login_id: user.id,
           password: user.pwd,
         });
-        history.replace("/");
         alert(`${user.id}님 반갑습니다!`);
+        history.replace("/");
       })
       .catch(() => {
         alert("로그인에 실패하였습니다.");
