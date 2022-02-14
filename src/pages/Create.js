@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ImgUpload from "../shared/ImgUpload";
 import ImgWrap from "../components/ImgWrap";
 import InputTag from "../element/InputTag";
+import { getCookie } from "../shared/cookie";
 import { history } from "../redux/configureStore";
 import { actionCreators as postActions } from "../redux/modules/article";
 
@@ -20,14 +21,16 @@ const Create = (props) => {
   const dispatch = useDispatch();
   const uploadImg = useSelector((state) => state.image);
   const user_info = useSelector((state) => state.user);
-  console.log(user_info.is_login);
-  console.log(uploadImg);
+  const isLogin = getCookie("is_login");
 
   React.useEffect(() => {
+    console.log(getCookie("is_login"));
+    console.log(isLogin);
     if (!uploadImg?.preview || !uploadImg.uploading) {
       return;
     }
   }, []);
+
   const createArti = () => {
     dispatch(postActions.createArtiApi(["cute", "like"]));
   };

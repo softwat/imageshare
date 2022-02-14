@@ -6,6 +6,7 @@ import { apis } from "../../shared/api";
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
+const IS_LOGIN = "IS_LOGIN";
 // const CHECK_DUPLICATE = "CHECK_DUPLICATE";
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
@@ -66,6 +67,14 @@ const loginActionApi = (user) => {
   };
 };
 
+const isLoginApi = () => {
+  return function (dispatch, { history }) {
+    apis.isLogin().then(() => {
+      dispatch(logOut());
+    });
+  };
+};
+
 // 로그아웃 미들웨어 api
 const logOutAction = () => {
   return function (dispatch, { history }) {
@@ -79,7 +88,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        addCookie("is_login", "success");
+        addCookie("is_login", true);
         draft.user = action.payload.user;
         draft.is_login = true;
       }),

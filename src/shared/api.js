@@ -21,11 +21,12 @@ export const apis = {
       nickname: nickname,
     }),
 
-  setlogin: ({ id, email, pwd, nickname }) =>
-    api.post(TEST_URL("login"), {
-      username: id,
-      password: pwd,
-    }),
+  setlogin: ({ id, pwd }) => api.get(TEST_URL("login")),
+  // setlogin: ({ id, email, pwd, nickname }) =>
+  // api.get(TEST_URL("login"), {
+  //   username: id,
+  //   password: pwd,
+  // }),
 
   logout: () => api.get(TEST_URL("")),
 
@@ -46,4 +47,7 @@ export const apis = {
   // .catch(console.log("no")),
 
   getArticle: () => api.get(TEST_URL("articles")),
+
+  // test
+  isLogin: () => api.get(TEST_URL("loginOk")),
 };
