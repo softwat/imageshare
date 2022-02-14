@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-
+import "moment";
 import { storage } from "../../shared/firebase";
 
 import { apis } from "../../shared/api";
@@ -17,8 +17,8 @@ const initialState = {
   image_url: "",
   uploading: false,
   preview: null,
+  tags: [],
 };
-
 const uploadImageApi = (image) => {
   return function (dispatch, getState, { history }) {
     dispatch(uploading(true));
