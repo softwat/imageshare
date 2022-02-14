@@ -1,34 +1,13 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "반가워요",
-      "author": "남산돈가스",
-      "content": "안녕하세요 남산돈가스입니다."
-    },
-    {
-      "id": 2,
-      "title": "Hello",
-      "author": "명동섞어찌개",
-      "content": "안녕하세요 명동섞어찌개입니다."
-    },
-    {
-      "id": 3,
-      "title": "Good Morning!",
-      "author": "남산돈가스",
-      "content": "좋은 아침이에요~~"
-    }
-  ],
-  "user": {},
   "signup": {
-    "username": "poiu",
-    "email": "poiu",
+    "login_id": "asdf",
+    "email": "poi",
     "password": "poiu",
     "nickname": "poiu"
   },
   "login": {
-    "username": "asdf",
-    "password": "asdfasdf"
+    "login_id": "asdf",
+    "password": "asdf"
   },
   "imageUrl": {
     "image_url": "https://firebasestorage.googleapis.com/v0/b/imageshare-325cc.appspot.com/o/image%2FIMG_2160.JPG?alt=media&token=1a80d0bd-2c82-4493-a37a-3f9f392e9658"

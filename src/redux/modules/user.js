@@ -1,7 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
+// import { history } from "../configureStore";
 import { addCookie, delCookie } from "../../shared/cookie";
-import { apis, api } from "../../shared/api";
+import { apis } from "../../shared/api";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -46,18 +47,21 @@ const signUpApi = (user) => {
 const loginActionApi = (user) => {
   return async function (dispatch, { history }) {
     await apis
-      .login(user)
+      .setlogin(user)
       .then((res) => {
-        console.log(res);
-        dispatch.setUser({
-          login_id: user.id,
-          password: user.pwd,
-        });
-        alert(`${user.id}님 반갑습니다!`);
+        console.log("login success");
         history.replace("/");
+        dispatch(
+          setUser({
+            // uid: res.uid,
+            login_id: user.id,
+            password: user.pwd,
+          })
+        );
       })
-      .catch(() => {
-        alert("로그인에 실패하였습니다.");
+      .catch((err) => {
+        console.log("no login so sad");
+        console.log(err);
       });
   };
 };
