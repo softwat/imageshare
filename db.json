@@ -81,9 +81,9 @@
         "nickname": "테스트"
     },
     "login": {
-        "uid": "asdfasdftest",
-        "nickname": "테스트",
-        "ok":true
+        "uid": 1,
+        "nickname": "르탄이",
+        "ok": true
     },
     "idCheck": ["false"]
 }

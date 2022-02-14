@@ -1,17 +1,18 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-import { addCookie, delCookie } from "../../shared/cookie";
+import { addCookie, delCookie, getCookie } from "../../shared/cookie";
 import { apis } from "../../shared/api";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
 const GET_USER = "GET_USER";
-const IS_LOGIN = "IS_LOGIN";
+const CHECK_LOGIN = "CHECK_LOGIN";
 // const CHECK_DUPLICATE = "CHECK_DUPLICATE";
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
+const checkLogin = createAction(CHECK_LOGIN, () => ({}));
 
 const initialState = {
   user: null,
@@ -49,9 +50,10 @@ const loginActionApi = (user) => {
     await apis
       .setlogin(user)
       .then((res) => {
+        console.log(res);
         dispatch(
           setUser({
-            uid: res.uid,
+            // uid: res.uid,
             login_id: user.id,
             password: user.pwd,
           })
@@ -64,14 +66,6 @@ const loginActionApi = (user) => {
         console.log("no login so sad");
         console.log(err);
       });
-  };
-};
-
-const isLoginApi = () => {
-  return function (dispatch, { history }) {
-    apis.isLogin().then(() => {
-      dispatch(logOut());
-    });
   };
 };
 
@@ -99,6 +93,10 @@ export default handleActions(
         draft.is_login = false;
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
+    [CHECK_LOGIN]: (state, action) =>
+      produce(state, (draft) => {
+        draft.is_login = getCookie("is_login") ? true : false;
+      }),
   },
   initialState
 );
@@ -108,6 +106,7 @@ const actionCreators = {
   logOutAction,
   loginActionApi,
   getUser,
+  checkLogin,
 };
 
 export { actionCreators };

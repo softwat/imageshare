@@ -26,6 +26,7 @@ const Create = (props) => {
   React.useEffect(() => {
     console.log(getCookie("is_login"));
     console.log(isLogin);
+
     if (!uploadImg?.preview || !uploadImg.uploading) {
       return;
     }
