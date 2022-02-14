@@ -18,18 +18,18 @@ const initialState = {
 };
 
 // 회원가입 미들웨어 api
-const signUpApi = (id, email, pwd, nickname) => {
+const signUpApi = user => {
     return function (dispatch, getState, { history }) {
-        apis.signup(id, email, pwd, nickname)
+        apis.signup(user)
             .then(res => {
                 console.log('login success');
                 dispatch(
                     setUser({
                         // uid: res.uid,
-                        login_id: id,
-                        nickname: nickname,
-                        password: pwd,
-                        email: email,
+                        login_id: user.id,
+                        nickname: user.nickname,
+                        password: user.pwd,
+                        email: user.email,
                     })
                 );
                 history.replace('/');
@@ -42,23 +42,26 @@ const signUpApi = (id, email, pwd, nickname) => {
 };
 
 // 로그인 미들웨어 api
-const loginActionApi = (id, pwd) => {
+const loginActionApi = user => {
     return async function (dispatch, getState, { history }) {
-        const user = { id, pwd };
-        const _user = await apis.login(user);
-        console.log(_user);
-        // .then(res => {
-        //     console.log(res);
-        //     alert(`${id}님 반갑습니다!`);
-        //     history.replace('/');
-        //     dispatch.setUser({
-        //         login_id: id,
-        //         password: pwd,
-        //     });
-        // })
-        // .catch(() => {
-        //     alert('로그인에 실패하였습니다.');
-        // });
+        await apis
+            .setlogin(user)
+            .then(res => {
+                dispatch(
+                    setUser({
+                        // uid: res.uid,
+                        login_id: user.id,
+                        password: user.pwd,
+                    })
+                );
+                console.log('login success');
+                alert(`${user.id}님 반갑습니다.`);
+                history.replace('/');
+            })
+            .catch(err => {
+                console.log('no login so sad');
+                console.log(err);
+            });
     };
 };
 

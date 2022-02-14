@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ImgUpload from "../shared/ImgUpload";
 import ImgWrap from "../components/ImgWrap";
@@ -9,18 +9,20 @@ import { apis } from "../shared/api";
 
 const Create = () => {
   const dispatch = useDispatch();
-  const createArti = () => {
-    apis.createArticle();
-  };
+  const uploadImg = useSelector((state) => state.image);
+
+  const createArti = () => {};
+
   return (
     <CreateStyle>
       <h2>이미지 업로드</h2>
       <ImgUpload />
-      <ImgWrap />
+      <ImgWrap image_url={uploadImg.preview} />
       <div className="input_tag">
         <InputTag />
       </div>
       <button
+        disabled={uploadImg.uploading ? "disabled" : ""}
         onClick={() => {
           createArti();
         }}>

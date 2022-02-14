@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-export const api = axios.create({
+const api = axios.create({
     baseURL: 'http://localhost:3000',
+    headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        accept: 'application/json,',
+    },
 });
 
 api.defaults.headers.common['Authorization'] = 'success';
@@ -17,9 +21,11 @@ export const apis = {
             nickname: nickname,
         }),
 
-    login: ({ id, pwd }) => {
-        return api.get(TEST_URL('login')).then(res => res);
-    },
+    setlogin: ({ id, email, pwd, nickname }) =>
+        api.post(TEST_URL('login'), {
+            login_id: id,
+            password: pwd,
+        }),
 
     logout: () => api.get(TEST_URL('')),
 
