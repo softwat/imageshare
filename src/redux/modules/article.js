@@ -14,6 +14,17 @@ const initialState = {
 };
 
 const getArticleAPI = () => {
+    console.log('aaa');
+    return function (dispatch) {
+        apis.getArticle().then(({ data }) => {
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(getArticle(_articles));
+        });
+    };
+};
+
+const getOneArticleAPI = id => {
     return function (dispatch) {
         apis.getArticle().then(({ data }) => {
             const _articles = [];
@@ -28,6 +39,7 @@ export default handleActions(
         [GET_ARTICLE]: (state, action) =>
             produce(state, draft => {
                 draft.articles = action.payload.articles;
+                console.log(draft.articles);
             }),
     },
     initialState
@@ -35,4 +47,5 @@ export default handleActions(
 
 export const actionCreators = {
     getArticleAPI,
+    getOneArticleAPI,
 };

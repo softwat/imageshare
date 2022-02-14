@@ -42,4 +42,6 @@ export const apis = {
     // .catch(console.log("no")),
 
     getArticle: () => api.get(TEST_URL('articles')),
+    getMyArticle: () => api.get(TEST_URL('myarticle')),
+    getMyLike: () => api.get(TEST_URL('mylike')),
 };
