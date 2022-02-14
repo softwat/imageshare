@@ -21,13 +21,34 @@
   ],
   "user": {},
   "signup": {
-    "login_id": "sss",
-    "email": "ㅁㄴㅇㄹ",
-    "password": "ㅁㄴㅇㄹ",
-    "nickname": "ㅁㄴㅇㄹ"
+    "username": "poiu",
+    "email": "poiu",
+    "password": "poiu",
+    "nickname": "poiu"
   },
-  "login": {},
-  "idCheck": [
-    "false"
-  ]
+  "login": {
+    "username": "asdf",
+    "password": "asdfasdf"
+  },
+  "imageUrl": {
+    "image_url": "https://firebasestorage.googleapis.com/v0/b/imageshare-325cc.appspot.com/o/image%2FIMG_2160.JPG?alt=media&token=1a80d0bd-2c82-4493-a37a-3f9f392e9658"
+  },
+  "detailArc": {
+    "postid": 2,
+    "writer_id": 3,
+    "writer_nickname": " “탄탄이”",
+    "liked_users": [
+      "”1”",
+      "“2”",
+      "“3”"
+    ],
+    "uid": 1,
+    "nickname": "“르탄이”",
+    "image_url": "“http~~~”",
+    "tags": [
+      "”귀여워”",
+      "“멍멍이”"
+    ],
+    "created_date": "2022-02-11”"
+  }
 }
