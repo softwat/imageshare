@@ -4,6 +4,7 @@ import styled from "styled-components";
 const DEFAULT_IMG =
   "https://cdn.crowdpic.net/list-thumb/thumb_l_F849A239E3EC8D949EB01552E25497E0.jpg";
 const ImgWrap = ({ image_url }) => {
+  console.log(image_url);
   return (
     <ImgStyle>
       <img src={image_url ? image_url : DEFAULT_IMG} alt="이미지" />

@@ -2,6 +2,10 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:3000",
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json,",
+  },
 });
 
 api.defaults.headers.common["Authorization"] = "success";
@@ -12,15 +16,14 @@ export const apis = {
   signup: ({ id, email, pwd, nickname }) =>
     // api.post("/user/signup", {
     api.post(TEST_URL("signup"), {
-      login_id: id,
+      username: id,
       email: email,
       password: pwd,
       nickname: nickname,
     }),
-
   login: ({ id, pwd }) =>
     api.post(TEST_URL("login"), {
-      login_id: id,
+      username: id,
       password: pwd,
     }),
 

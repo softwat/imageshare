@@ -18,10 +18,10 @@ const initialState = {
 };
 
 // 회원가입 미들웨어 api
-const signUpApi = (id, email, pwd, nickname) => {
-  return function (dispatch, getState, { history }) {
+const signUpApi = ({ id, email, pwd, nickname }) => {
+  return function (dispatch, { history }) {
     apis
-      .signup(id, email, pwd, nickname)
+      .signup({ id, email, pwd, nickname })
       .then((res) => {
         console.log("login success");
         dispatch(
@@ -33,7 +33,7 @@ const signUpApi = (id, email, pwd, nickname) => {
             email: email,
           })
         );
-        history.replace("/");
+        // history.replace("/");
       })
       .catch((err) => {
         console.log("no signup so sad");
@@ -43,17 +43,17 @@ const signUpApi = (id, email, pwd, nickname) => {
 };
 
 // 로그인 미들웨어 api
-const loginActionApi = (id, pwd) => {
+const loginActionApi = ({ id, pwd }) => {
   return function (dispatch, getState, { history }) {
     apis
-      .login(id, pwd)
-      .then((res) => {
-        alert(`${id}님 반갑습니다!`);
-        history.replace("/");
+      .setLogin({ id, pwd })
+      .then(() => {
         dispatch.setUser({
           login_id: id,
           password: pwd,
         });
+        history.replace("/");
+        alert(`${id}님 반갑습니다!`);
       })
       .catch(() => {
         alert("로그인에 실패하였습니다.");

@@ -16,25 +16,25 @@ const SignUp = (props) => {
   const signUpClick = () => {
     const { id, email, nickname, pwd, re_pwd } = formInput;
 
-    if (!id || !email || !nickname || !pwd || !re_pwd) {
-      alert("빈 칸을 모두 채워 주세요 :)");
-    } else if (!emailCheck(email)) {
-      alert("이메일 형식이 아닙니다.");
-      return;
-    } else if (!loginInCheck(id)) {
-      alert("아이디는 영문 대소문자와 숫자를 포함한 최소 3자 이상입니다.");
-      return;
-    } else if (pwdCheck(pwd) === false) {
-      alert("비밀번호는 최소 4글자 이상입니다.");
-      return;
-    } else if (pwd.search(id) > -1) {
-      return alert("비밀번호에 아이디가 포함 되어 있습니다.");
-    } else if (pwd !== re_pwd) {
-      alert("비밀번호가 서로 같지 않습니다. :)");
-      return;
-    } else {
-      dispatch(userActions.signUpApi(formInput));
-    }
+    // if (!id || !email || !nickname || !pwd || !re_pwd) {
+    //   alert("빈 칸을 모두 채워 주세요 :)");
+    // } else if (!emailCheck(email)) {
+    //   alert("이메일 형식이 아닙니다.");
+    //   return;
+    // } else if (!loginInCheck(id)) {
+    //   alert("아이디는 영문 대소문자와 숫자를 포함한 최소 3자 이상입니다.");
+    //   return;
+    // } else if (pwdCheck(pwd) === false) {
+    //   alert("비밀번호는 최소 4글자 이상입니다.");
+    //   return;
+    // } else if (pwd.search(id) > -1) {
+    //   return alert("비밀번호에 아이디가 포함 되어 있습니다.");
+    // } else if (pwd !== re_pwd) {
+    //   alert("비밀번호가 서로 같지 않습니다. :)");
+    //   return;
+    // } else {
+    dispatch(userActions.signUpApi(formInput));
+    // }
   };
 
   const onChange = (e) => {
