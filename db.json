@@ -81,8 +81,9 @@
         "nickname": "테스트"
     },
     "login": {
-        "login_id": "test@test.test",
-        "password": "test1234"
+        "uid": 1,
+        "nickname": "르탄이",
+        "ok": true
     },
     "idCheck": ["false"]
 }

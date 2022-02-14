@@ -21,11 +21,7 @@ export const apis = {
             nickname: nickname,
         }),
 
-    setlogin: ({ id, email, pwd, nickname }) =>
-        api.post(TEST_URL('login'), {
-            login_id: id,
-            password: pwd,
-        }),
+    setlogin: ({ id, email, pwd, nickname }) => api.get(TEST_URL('login'), {}),
 
     logout: () => api.get(TEST_URL('')),
 
