@@ -1,31 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Img } from './index.js';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { actionCreators } from '../redux/modules/article.js';
+
+import { ImgContainer } from './index.js';
 
 const ImgList = props => {
-    const { imgs } = props;
     const { history } = props;
+
+    const dispatch = useDispatch();
+    const { articles } = useSelector(state => state.article);
+
+    React.useEffect(() => {
+        // 난 자꾸 바보같이 디스패치를 안해놓고 실행이 안돼서 한참 혼란스러워 한다
+        if (articles < 2) {
+            dispatch(actionCreators.getArticleAPI());
+        }
+    }, []);
+
     return (
         <React.Fragment>
-            <ImgListContainer>
-                {imgs.map((img, idx) => {
-                    return <Img key={idx} history={history}></Img>;
+            <ImageList className="image-list">
+                {articles.map((article, idx) => {
+                    return <ImgContainer key={idx} {...article} />;
                 })}
-            </ImgListContainer>
+            </ImageList>
         </React.Fragment>
     );
 };
 
 ImgList.defaultProps = {
-    imgs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    articles: [],
 };
 
-const ImgListContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    /* border: 1px solid black; */
+const ImageList = styled.div`
+    /* max-width: 500px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 0; */
 `;
 
 export default ImgList;
