@@ -21,12 +21,15 @@
   ],
   "user": {},
   "signup": {
-    "login_id": "sss",
-    "email": "ㅁㄴㅇㄹ",
-    "password": "ㅁㄴㅇㄹ",
-    "nickname": "ㅁㄴㅇㄹ"
+    "login_id": "test",
+    "email": "test@test.test",
+    "password": "1234",
+    "nickname": "테스트"
   },
-  "login": {},
+  "login": {
+    "login_id": "test@test.test",
+    "password": "test1234"
+  },
   "idCheck": [
     "false"
   ]
