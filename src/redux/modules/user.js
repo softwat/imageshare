@@ -1,6 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-// import { history } from "../configureStore";
 import { addCookie, delCookie } from "../../shared/cookie";
 import { apis } from "../../shared/api";
 
@@ -45,12 +44,10 @@ const signUpApi = (user) => {
 
 // 로그인 미들웨어 api
 const loginActionApi = (user) => {
-  return async function (dispatch, { history }) {
+  return async function (dispatch, getState, { history }) {
     await apis
       .setlogin(user)
       .then((res) => {
-        console.log("login success");
-        history.replace("/");
         dispatch(
           setUser({
             // uid: res.uid,
@@ -58,6 +55,9 @@ const loginActionApi = (user) => {
             password: user.pwd,
           })
         );
+        console.log("login success");
+        alert(`${user.id}님 반갑습니다.`);
+        history.replace("/");
       })
       .catch((err) => {
         console.log("no login so sad");
