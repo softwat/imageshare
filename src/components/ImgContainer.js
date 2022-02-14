@@ -3,17 +3,22 @@ import styled from 'styled-components';
 import { Button, Permit } from '../elements/index';
 import { ImgInfo, TagList } from './index';
 
-const Img = props => {
+const ImgContainer = props => {
     const { history } = props;
     const goDetail = () => history.push('/detail');
 
+    const styles = {
+        src: props.image_url,
+    };
+
     return (
         <React.Fragment>
-            <ImgContainer
+            <ImageContainer
                 onClick={() => {
                     goDetail();
                     console.log('img clicked');
                 }}
+                {...styles}
             >
                 <Permit>
                     <Button
@@ -25,23 +30,31 @@ const Img = props => {
                         }}
                     ></Button>
                 </Permit>
-                img
-                <ImgInfo />
-            </ImgContainer>
+                <ImgInfo {...props} />
+                <Img src={styles.src} />
+            </ImageContainer>
             <Permit></Permit>
         </React.Fragment>
     );
 };
 
-const ImgContainer = styled.div`
+const ImageContainer = styled.div`
     position: relative;
+    float: left;
     border: 1px solid black;
-    width: 200px;
-    height: 400px;
-    margin: 10px;
+    width: auto;
+    height: fit-content;
+    margin: 20px;
+    overflow: hidden;
     &:hover * {
         opacity: 1;
     }
 `;
 
-export default Img;
+const Img = styled.img`
+    /* width: 100%; */
+    height: auto;
+    object-fit: fill;
+`;
+
+export default ImgContainer;

@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { addCookie, delCookie } from '../../shared/cookie';
-import { apis, api } from '../../shared/api';
+import { apis } from '../../shared/api';
 
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';

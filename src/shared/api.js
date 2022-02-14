@@ -38,4 +38,6 @@ export const apis = {
     // logOut: () => api.get(TEST_URL("logout")),
 
     // .catch(console.log("no")),
+
+    getArticle: () => api.get(TEST_URL('articles')),
 };
