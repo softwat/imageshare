@@ -69,9 +69,8 @@ SearchInput.defaultProps = {
 };
 
 const ElInput = styled.input`
-  /* border: 1px solid #212121; */
   border: none;
-  border-bottom: solid 1px #ccff00;
+  border-bottom: solid 1px #7d7c7c;
   padding: 12px 4px;
   box-sizing: border-box;
   flex-grow: 1;
