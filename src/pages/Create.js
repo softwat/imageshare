@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ImgUpload from "../shared/ImgUpload";
 import ImgWrap from "../components/ImgWrap";
-import InputTag from "../element/InputTag";
+
 import { getCookie } from "../shared/cookie";
 import { history } from "../redux/configureStore";
 import { actionCreators as postActions } from "../redux/modules/article";
@@ -19,34 +19,62 @@ const Create = (props) => {
   } = props;
 
   const dispatch = useDispatch();
+  const tagRef = React.useRef();
+  const [tag, setTag] = React.useState("");
   const uploadImg = useSelector((state) => state.image);
   const user_info = useSelector((state) => state.user);
   const isLogin = getCookie("is_login");
 
   React.useEffect(() => {
     console.log(getCookie("is_login"));
-    console.log(isLogin);
 
     if (!uploadImg?.preview || !uploadImg.uploading) {
       return;
     }
   }, []);
 
-  const createArti = () => {
-    dispatch(postActions.createArtiApi(["cute", "like"]));
-  };
   // if (!user_info.is_login) {
   //   alert("로그인 후 게시글을 작성 할 수 있습니다.");
   //   history.replace("/");
   //   return <div>{/* <h1>로그인 후 게시글을 작성 할 수 있습니다.</h1> */}</div>;
   // }
+  const onChange = (e) => {
+    setTag(e.target.value);
+  };
+
+  const createArti = () => {
+    const toTag = tag.replace(/(\s*)/g, "").trim().split("#").shift();
+    if (uploadImg.preview === null) {
+      alert("이미지를 선택해주세요");
+      return;
+    } else if (!tag) {
+      alert("태그를 입력해주세요");
+      return;
+    }
+    dispatch(postActions.createArtiApi(toTag));
+  };
   return (
     <CreateStyle>
       <h2>이미지 업로드</h2>
       <ImgUpload />
       <ImgWrap image_url={uploadImg?.preview} />
       <div className="input_tag">
-        <InputTag />
+        <InputTagStyle>
+          {/* <span className="tag">sss </span> */}
+          <input
+            // onKeyPress={(e) => {
+            //   if (e.key === "Enter") {
+            //     createArti();
+            //   }
+            // }}
+            // id={`tag_${idx}`}
+            type="text"
+            id="tag"
+            ref={tagRef}
+            onChange={onChange}
+            placeholder="태그를 입력해주세요 (필수) #귀여워 #가보자고"
+          />
+        </InputTagStyle>
       </div>
       <button
         disabled={uploadImg?.uploading ? "disabled" : ""}
@@ -92,6 +120,24 @@ const CreateStyle = styled.div`
     background-color: red;
     color: #fff;
     cursor: pointer;
+  }
+`;
+
+const InputTagStyle = styled.div`
+  display: inline-block;
+  min-width: 300px;
+  padding: 6px;
+
+  input {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: solid 1px #ccc;
+  }
+  .tag {
+    padding: 4px 6px;
+    margin-right: 6px;
+    border: solid 1px #ccc;
   }
 `;
 export default Create;

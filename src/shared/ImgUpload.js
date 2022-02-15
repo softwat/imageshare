@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const ImgUpload = () => {
   const fileInput = React.useRef();
   const dispatch = useDispatch();
+  const is_uploading = useSelector((state) => state.image.uploading);
 
   const selectFile = (e) => {
+    // console.log(e.target.files[0]);
+    //
     const reader = new FileReader();
     const file = fileInput.current.files[0];
-    reader.readAsDataURL(file);
 
+    reader.readAsDataURL(file);
     reader.onloadend = () => {
+      console.log(reader.result);
       dispatch(imageActions.setPreview(reader.result));
     };
   };
@@ -33,6 +37,7 @@ const ImgUpload = () => {
         />
         <div>
           <button
+            disabled={is_uploading}
             onClick={() => {
               uploadFB();
             }}>
@@ -62,6 +67,11 @@ const ImgWrap = styled.div`
   button {
     height: 100%;
     cursor: pointer;
+
+    &[disabled] {
+      background-color: #eee;
+      color: #ddd;
+    }
   }
 `;
 export default ImgUpload;

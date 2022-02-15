@@ -5,17 +5,16 @@ const addCookie = (name, value, exp = 5) => {
 };
 
 const getCookie = (name) => {
-  let value = ";" + document.cookie;
-  let parts = value.split(`; ${name}=`);
+  let value = document.cookie;
+  let parts = value.split(`${name}=`);
   if (parts.length === 2) {
-    console.log(parts.pop().split(";").shift());
+    // console.log(parts.pop().split(";").shift());
     return parts.pop().split(";").shift();
   }
 };
 
 const delCookie = (name) => {
   let date = new Date("1990-02-14").toUTCString();
-  console.log(date);
   document.cookie = `${name}=; expires = ${date}`;
 };
 

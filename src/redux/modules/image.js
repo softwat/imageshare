@@ -17,8 +17,8 @@ const initialState = {
   image_url: "",
   uploading: false,
   preview: null,
-  tags: [],
 };
+
 const uploadImageApi = (image) => {
   return function (dispatch, getState, { history }) {
     dispatch(uploading(true));
@@ -26,9 +26,11 @@ const uploadImageApi = (image) => {
     // firebase에 이미지를 업로드 하기위해서 'file이름 포함한 참조'를 해주어야 한다.
     const _upload = storage.ref(`image/${image.name}`).put(image);
     _upload.then((snapshot) => {
+      // console.log(snapshot);
       snapshot.ref.getDownloadURL().then((url) => {
+        apis.uploadImageUrl(url);
         dispatch(uploadImage(url));
-        apis.imageUrl(url);
+        // console.log(url);
       });
     });
   };
@@ -55,9 +57,8 @@ export default handleActions(
 
 const actionCreators = {
   uploading,
-  uploadImage,
-  setPreview,
   uploadImageApi,
+  setPreview,
 };
 
 export { actionCreators };
