@@ -38,21 +38,14 @@ Button.defaultProps = {
 
 const ElButton = styled.button`
   width: ${(props) => props.width};
-  background-color: red;
-  color: #ffffff;
-  color: #234512;
-  background-color: #eee;
+  color: #000;
   padding: 12px 0px;
   box-sizing: border-box;
-  border: none;
+  border: solid 1px #ccc;
   padding: ${(props) => props.padding};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-
+  background-color:#fff;
   transition: all 0.3s;
-
-  &:hover {
-    background-color: #ccff00;
-  }
 `;
 
 const LikeButton = styled.button`

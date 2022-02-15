@@ -22,14 +22,26 @@ const Search = (props) => {
   return (
     <SearchContainer>
       <SearchInput _onChange={inputHandler} _ref={keywordInput}></SearchInput>
-      <Button text="검색" width="50px" _onClick={btnHandler} />
+      <Button text="" width="40px" _onClick={btnHandler} />
     </SearchContainer>
   );
 };
 
 const SearchContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex: 1;
-  margin-right: 5vw;
+
+  input {
+    max-width: 420px;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    padding: 0 20px;
+  }
+
+  button {
+    border-radius: 100px;
+    background: url(/search.png) no-repeat center / 40%;
+  }
 `;
 export default Search;

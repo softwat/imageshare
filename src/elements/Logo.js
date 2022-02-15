@@ -6,9 +6,7 @@ const Logo = (props) => {
   const { history } = props;
   return (
     <React.Fragment>
-      <LogoContainer onClick={() => history.push("/")}>
-        Image Share
-      </LogoContainer>
+      <LogoContainer onClick={() => history.push("/")}>Pic!</LogoContainer>
     </React.Fragment>
   );
 };
@@ -16,9 +14,12 @@ const Logo = (props) => {
 const LogoContainer = styled.div`
   width: 150px;
   text-align: center;
-  line-height: 50px;
   cursor: pointer;
-  font-family: "Syne Tactile", cursive;
+  font-family: "Lobster", cursive;
+  font-family: "Permanent Marker", cursive;
+  font-size: 30px;
+  color: #ff54b0;
+}
 `;
 
 export default Logo;

@@ -30,7 +30,6 @@ const Detail = (props) => {
 
   return (
     <DetailS>
-      {user.is_login ? <div>login</div> : <div>no</div>}
       <BlockWrap>
         {article && (
           <>
