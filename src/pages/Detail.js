@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import BlockWrap from '../components/BlockWrap';
 import PostInfo from '../components/PostInfo';
@@ -8,7 +9,21 @@ import LikeIt from '../components/LikeIt';
 import TagList from '../components/TagList';
 
 const Detail = props => {
-    const is_login = useSelector(state => state.user.is_login);
+    const { history } = props;
+    const dispatch = useDispatch();
+
+    const { id } = useParams();
+    const articles = useSelector(state => state.article.articles);
+    const article_idx = articles.findIndex(a => {
+        return a.article_id === +id;
+    });
+    const article = articles[article_idx];
+    if (!article) history.replace('/');
+    console.log(article);
+
+    const user = useSelector(state => state.user);
+    console.log(user);
+
     const {
         writer_id,
         writer_nickname,
@@ -17,11 +32,11 @@ const Detail = props => {
         uid,
         tags,
         created_date,
-    } = props;
-    console.log(is_login);
+    } = article;
+
     return (
         <DetailS>
-            {is_login ? <div>login</div> : <div>no</div>}
+            {user.is_login ? <div>login</div> : <div>no</div>}
             <BlockWrap>
                 <PostInfo
                     writer_nickname={writer_nickname}
@@ -30,7 +45,8 @@ const Detail = props => {
                 />
                 <ImgWrap image_url={image_url} />
                 <div className="like_tag_wrap">
-                    <LikeIt uid={uid} liked_users={liked_users} />
+                    {/* <LikeIt liked_users={liked_users.length} /> */}
+                    <LikeIt liked_users={liked_users} />
                     <TagList tags={tags} />
                 </div>
             </BlockWrap>
