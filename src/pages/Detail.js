@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { history } from "../redux/configureStore";
 import { actionCreators as articleActions } from "../redux/modules/article";
 import styled from "styled-components";
 import BlockWrap from "../components/BlockWrap";
@@ -38,12 +39,16 @@ const Detail = (props) => {
           </>
         )}
         <div className="like_tag_wrap">
-          {/* <LikeIt liked_users={liked_users.length} /> */}
           <LikeIt liked_users={article?.liked_users} />
           <TagList tags={article?.tags} />
         </div>
       </BlockWrap>
-      <ToHome>Home</ToHome>
+      <ToHome
+        onClick={() => {
+          history.push("/");
+        }}>
+        Home
+      </ToHome>
     </DetailS>
   );
 };
