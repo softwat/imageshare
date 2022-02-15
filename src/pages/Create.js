@@ -26,7 +26,7 @@ const Create = (props) => {
   const isLogin = getCookie("is_login");
 
   React.useEffect(() => {
-    console.log(getCookie("is_login"));
+    // console.log(getCookie("is_login"));
 
     if (!uploadImg?.preview || !uploadImg.uploading) {
       return;
@@ -43,7 +43,7 @@ const Create = (props) => {
   };
 
   const createArti = () => {
-    const toTag = tag.replace(/(\s*)/g, "").trim().split("#").shift();
+    const toTag = tag.replace(/(\s*)/g, "").trim().split("#").splice(1);
     if (uploadImg.preview === null) {
       alert("이미지를 선택해주세요");
       return;
@@ -60,14 +60,7 @@ const Create = (props) => {
       <ImgWrap image_url={uploadImg?.preview} />
       <div className="input_tag">
         <InputTagStyle>
-          {/* <span className="tag">sss </span> */}
           <input
-            // onKeyPress={(e) => {
-            //   if (e.key === "Enter") {
-            //     createArti();
-            //   }
-            // }}
-            // id={`tag_${idx}`}
             type="text"
             id="tag"
             ref={tagRef}
