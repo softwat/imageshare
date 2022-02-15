@@ -16,7 +16,6 @@ const addArticle = createAction(ADD_ARTICLE, (articles) => ({ articles }));
 const addTags = createAction(ADD_ARTICLE, (tag) => ({ tag }));
 const initialState = {
   articles: [],
-  tags: [],
 };
 
 const initialArticle = {
@@ -127,7 +126,7 @@ export default handleActions(
     [GET_ARTICLE]: (state, action) =>
       produce(state, (draft) => {
         draft.articles = action.payload.articles;
-        console.log(draft.articles);
+        // console.log(draft.articles);
       }),
   },
   initialState
