@@ -1,7 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { actionCreators as acticleActions } from '../redux/modules/article';
 
 const Toggle = props => {
+    const dispatch = useDispatch();
+    const mineClick = () => {
+        dispatch(acticleActions.getMyArticleAPI());
+    };
+    const likeClick = () => {
+        console.log('like');
+    };
     return (
         <RadioToolBar>
             <input
@@ -9,7 +19,8 @@ const Toggle = props => {
                 id="radioMine"
                 name="radioProfile"
                 value="mine"
-                defaultChecked
+                onClick={mineClick}
+                // defaultChecked
             />
             <label htmlFor="radioMine">내가 올린 사진</label>
 
@@ -18,6 +29,7 @@ const Toggle = props => {
                 id="radioLiked"
                 name="radioProfile"
                 value="liked"
+                onClick={likeClick}
             />
             <label htmlFor="radioLiked">내가 좋아요 한 사진</label>
         </RadioToolBar>
