@@ -3,7 +3,7 @@ import './App.css';
 
 import { Route } from 'react-router-dom';
 
-import { Header, MyList, MyLike } from './components/index.js';
+import { Header, MyList, MyLike, Result } from './components/index.js';
 import { Main, MyProfile } from './pages/index.js';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -31,6 +31,7 @@ function App() {
             <Route path="/signup" exact component={SignUp} />
             <Route path="/create" exact component={Create} />
             <Route path="/pictures/:id" component={Detail} />
+            <Route path="/search" exact component={Result} />
         </React.Fragment>
     );
 }

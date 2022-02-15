@@ -10,6 +10,7 @@ const ADD_ARTICLE = 'ADD_ARTICLE';
 const GET_MY_ARTICLE = 'GET_MY_ARTICLE';
 const GET_MY_LIKE = 'GET_MY_LIKE';
 const ADD_TAGS = 'ADDTAGS';
+const SEARCH_TAG = 'SEARCH_TAG';
 
 const getArticle = createAction(GET_ARTICLE, _articles => ({
     articles: _articles,
@@ -25,6 +26,8 @@ const getMyLike = createAction(GET_MY_LIKE, _articles => ({
 
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
 const addTags = createAction(ADD_ARTICLE, tag => ({ tag }));
+const seachTag = createAction(SEARCH_TAG, articles => ({ articles }));
+
 const initialState = {
     articles: [],
     myArticles: [],
@@ -47,6 +50,17 @@ const getArticleAPI = () => {
             const _articles = [];
             data.forEach(d => _articles.push(d));
             dispatch(getArticle(_articles));
+        });
+    };
+};
+
+const searchTagAPI = keyword => {
+    return function (dispatch) {
+        apis.searchTag(keyword).then(({ data }) => {
+            console.log(data);
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(seachTag(_articles));
         });
     };
 };
@@ -169,6 +183,10 @@ export default handleActions(
             produce(state, draft => {
                 draft.myLikes = action.payload.myLikes;
             }),
+        [SEARCH_TAG]: (state, action) =>
+            produce(state, draft => {
+                draft.searchRes = action.payload.articles;
+            }),
     },
     initialState
 );
@@ -180,4 +198,5 @@ export const actionCreators = {
     addTags,
     getMyArticleAPI,
     getMyLikeAPI,
+    searchTagAPI,
 };

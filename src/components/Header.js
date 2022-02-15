@@ -8,6 +8,7 @@ import { Logo, Button, Input } from '../elements/index.js';
 import { actionCreators as userActions } from '../redux/modules/user';
 
 const Header = props => {
+    const { history } = props;
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const goProfile = () => props.history.push('/myprofile');
@@ -17,7 +18,7 @@ const Header = props => {
         <React.Fragment>
             <HeaderContainer>
                 <Logo {...props} />
-                <Search flex-grow="1" />
+                <Search flex-grow="1" history={history} />
                 {!user.is_login ? (
                     <React.Fragment>
                         <Button

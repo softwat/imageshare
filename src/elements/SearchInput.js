@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '.';
 
-const Input = props => {
+const SearchInput = props => {
     const {
         label,
         placeholder,
@@ -46,7 +45,7 @@ const Input = props => {
     );
 };
 
-Input.defaultProps = {
+SearchInput.defaultProps = {
     multiLine: false,
     label: '',
     place_holder: '텍스트를 입력해주세요',
@@ -75,4 +74,4 @@ const ElTextarea = styled.textarea`
     box-sizing: border-box;
 `;
 
-export default Input;
+export default SearchInput;

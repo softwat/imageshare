@@ -7,6 +7,7 @@ import TagList from './TagList';
 import Toggle from './Toggle';
 import MyList from './MyList';
 import MyLike from './MyLike';
+import Result from './Result';
 
 export {
     ImgContainer,
@@ -18,4 +19,5 @@ export {
     Toggle,
     MyList,
     MyLike,
+    Result,
 };
