@@ -1,13 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { actionCreators as articleActions } from '../redux/modules/article';
 import styled from 'styled-components';
 import { Button, Permit } from '../elements/index';
 import { ImgInfo, TagList } from './index';
 
 const ImgContainer = props => {
+    console.log(props);
     const { history } = props;
-    console.log(props.article_id);
+    const dispatch = useDispatch();
     const goDetail = () => {
         history.push(`/pictures/${props.article_id}`);
+        dispatch(articleActions.getArticleAPI());
     };
 
     const styles = {
@@ -21,6 +26,7 @@ const ImgContainer = props => {
                     goDetail();
                 }}
             >
+                <Writer>{props.writer_nickname}</Writer>
                 <Permit>
                     <Button
                         is_abs
@@ -38,6 +44,11 @@ const ImgContainer = props => {
         </React.Fragment>
     );
 };
+
+const Writer = styled.h2`
+    position: absolute;
+    opacity: 0;
+`;
 
 const ImageContainer = styled.div`
     position: relative;

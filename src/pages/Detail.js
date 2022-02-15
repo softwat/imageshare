@@ -19,6 +19,7 @@ const Detail = props => {
     });
     const article = articles[article_idx];
     if (!article) history.replace('/');
+
     console.log(article);
 
     const user = useSelector(state => state.user);
@@ -32,7 +33,7 @@ const Detail = props => {
         uid,
         tags,
         created_date,
-    } = article;
+    } = article ? article : props;
 
     return (
         <DetailS>
