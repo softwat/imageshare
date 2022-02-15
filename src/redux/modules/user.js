@@ -1,7 +1,9 @@
+import axios from "axios";
+
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { addCookie, delCookie, getCookie } from "../../shared/cookie";
-import { apis } from "../../shared/api";
+import api, { apis } from "../../shared/api";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
@@ -20,7 +22,7 @@ const initialState = {
 };
 
 // 회원가입 미들웨어 api
-const signUpApi = async (user) => {
+const signUpApi = (user) => {
   return function (dispatch, getState, { history }) {
     apis
       .signup(user)
@@ -47,10 +49,11 @@ const signUpApi = async (user) => {
 
 // 로그인 미들웨어 api
 const loginActionApi = (user) => {
-  return async function (dispatch, getState, { history }) {
-    await apis
+  return function (dispatch, getState, { history }) {
+    apis
       .setlogin(user)
       .then((res) => {
+        console.log("도착했니?");
         console.log(res);
         dispatch(
           setUser({
@@ -61,6 +64,7 @@ const loginActionApi = (user) => {
         );
         const token = res.headers.authorization;
         addCookie("token", token);
+        sessionStorage.setItem("token", token);
         alert(`${user.id}님 반갑습니다.`);
         // history.replace("/");
       })
@@ -77,6 +81,55 @@ const logOutAction = () => {
     apis.logout().then(() => {
       dispatch(logOut());
     });
+  };
+};
+
+const checkLoginApi = (token) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "post",
+      url: "http://3.38.153.67/user/islogin",
+      headers: {
+        "content-type": "applicaton/json;charset=UTF-8",
+        accept: "application/json",
+        Authorization: `${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // api
+    //   .post("http://3.38.153.67/api/islogin", {
+    //     headers: token,
+    //   })
+    //   .then((res) => {
+    //     console.log("token");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // axios({
+    //   method: "get",
+    //   url: "http://3.34.193.226/check/user",
+    //   headers: {
+    //     "content-type": "applicaton/json;charset=UTF-8",
+    //     accept: "application/json",
+    //     Authorization: `Bearer ${token_key}`,
+    //   },
+    // });
+    // apis
+    //   .islogin(token)
+    //   .then((res) => {
+    //     console.log("로그인 토큰 체크");
+    //     console.log(res);
+    //     history.replace("/");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 };
 
@@ -109,6 +162,7 @@ const actionCreators = {
   loginActionApi,
   getUser,
   checkLogin,
+  checkLoginApi,
 };
 
 export { actionCreators };

@@ -14,7 +14,7 @@ const api = axios.create({
 //   return config;
 // });
 
-api.defaults.headers.common["Authorization"] = "success";
+// api.defaults.headers.common["Authorization"] = "success";
 
 const TEST_URL = (site) => `http://localhost:3003/${site}`;
 
@@ -65,3 +65,5 @@ export const apis = {
   delArticle: (articleId) => api.delete(TEST_URL(`pictures/${articleId}`)),
   // detailArticle: (id) => api.get(TEST_URL(`/pictures/${articleid}`)),
 };
+
+export default api;
