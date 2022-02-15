@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Button } from ".";
 
-const Input = (props) => {
+const SearchInput = (props) => {
   const {
     label,
     placeholder,
@@ -14,6 +13,19 @@ const Input = (props) => {
     name,
     search,
   } = props;
+
+  if (multiLine) {
+    return (
+      <React.Fragment>
+        <p>{label}</p>
+        <ElTextarea
+          rows={10}
+          value={value}
+          placeholder={placeholder}
+          onChange={_onChange}></ElTextarea>
+      </React.Fragment>
+    );
+  }
 
   if (multiLine) {
     return (
@@ -44,7 +56,7 @@ const Input = (props) => {
   );
 };
 
-Input.defaultProps = {
+SearchInput.defaultProps = {
   multiLine: false,
   label: "",
   place_holder: "텍스트를 입력해주세요",
@@ -75,4 +87,4 @@ const ElTextarea = styled.textarea`
   box-sizing: border-box;
 `;
 
-export default Input;
+export default SearchInput;

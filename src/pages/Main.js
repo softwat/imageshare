@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 import { ImgList } from "../components/index.js";
-
 const Main = (props) => {
   return (
     <React.Fragment>

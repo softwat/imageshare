@@ -101,35 +101,6 @@ const checkLoginApi = (token) => {
       .catch((err) => {
         console.log(err);
       });
-    // api
-    //   .post("http://3.38.153.67/api/islogin", {
-    //     headers: token,
-    //   })
-    //   .then((res) => {
-    //     console.log("token");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    // axios({
-    //   method: "get",
-    //   url: "http://3.34.193.226/check/user",
-    //   headers: {
-    //     "content-type": "applicaton/json;charset=UTF-8",
-    //     accept: "application/json",
-    //     Authorization: `Bearer ${token_key}`,
-    //   },
-    // });
-    // apis
-    //   .islogin(token)
-    //   .then((res) => {
-    //     console.log("로그인 토큰 체크");
-    //     console.log(res);
-    //     history.replace("/");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 };
 
@@ -139,6 +110,7 @@ export default handleActions(
       produce(state, (draft) => {
         addCookie("is_login", true);
         draft.user = action.payload.user;
+        console.log(draft.user);
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>

@@ -5,5 +5,19 @@ import ImgContainer from './ImgContainer';
 import ImgInfo from './ImgInfo';
 import TagList from './TagList';
 import Toggle from './Toggle';
+import MyList from './MyList';
+import MyLike from './MyLike';
+import Result from './Result';
 
-export { ImgContainer, Header, ImgList, Search, ImgInfo, TagList, Toggle };
+export {
+    ImgContainer,
+    Header,
+    ImgList,
+    Search,
+    ImgInfo,
+    TagList,
+    Toggle,
+    MyList,
+    MyLike,
+    Result,
+};

@@ -8,20 +8,30 @@ import { storage } from '../../shared/firebase';
 const GET_ARTICLE = 'GET_ARTICLE';
 const ADD_ARTICLE = 'ADD_ARTICLE';
 const GET_MY_ARTICLE = 'GET_MY_ARTICLE';
+const GET_MY_LIKE = 'GET_MY_LIKE';
 const ADD_TAGS = 'ADDTAGS';
+const SEARCH_TAG = 'SEARCH_TAG';
 
 const getArticle = createAction(GET_ARTICLE, _articles => ({
     articles: _articles,
 }));
 
 const getMyArticle = createAction(GET_MY_ARTICLE, _articles => ({
-    articles: _articles,
+    myArticles: _articles,
+}));
+
+const getMyLike = createAction(GET_MY_LIKE, _articles => ({
+    myLikes: _articles,
 }));
 
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
 const addTags = createAction(ADD_ARTICLE, tag => ({ tag }));
+const seachTag = createAction(SEARCH_TAG, articles => ({ articles }));
+
 const initialState = {
     articles: [],
+    myArticles: [],
+    myLikes: [],
 };
 
 const initialArticle = {
@@ -44,12 +54,43 @@ const getArticleAPI = () => {
     };
 };
 
+const searchTagAPI = keyword => {
+    return function (dispatch) {
+        apis.searchTag(keyword).then(({ data }) => {
+            console.log(data);
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(seachTag(_articles));
+        });
+    };
+};
+
 const getOneArticleAPI = id => {
     return function (dispatch) {
         apis.getArticle().then(({ data }) => {
             const _articles = [];
             data.forEach(d => _articles.push(d));
             dispatch(getArticle(_articles));
+        });
+    };
+};
+
+const getMyArticleAPI = () => {
+    return function (dispatch) {
+        apis.getMyArticle().then(({ data }) => {
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(getMyArticle(_articles));
+        });
+    };
+};
+
+const getMyLikeAPI = () => {
+    return function (dispatch) {
+        apis.getMyLike().then(({ data }) => {
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(getMyLike(_articles));
         });
     };
 };
@@ -70,6 +111,7 @@ const createArtiApi = tags => {
             ...initialArticle,
             created_date: moment().format('YYYY-MM-DD hh:mm:ss'),
         };
+
         const _upload = storage
             .ref(`image/${user_info.nickname}_${new Date().getTime()}`)
             .putString(_image, 'data_url');
@@ -133,6 +175,18 @@ export default handleActions(
                 draft.articles = action.payload.articles;
                 // console.log(draft.articles);
             }),
+        [GET_MY_ARTICLE]: (state, action) =>
+            produce(state, draft => {
+                draft.myArticles = action.payload.myArticles;
+            }),
+        [GET_MY_LIKE]: (state, action) =>
+            produce(state, draft => {
+                draft.myLikes = action.payload.myLikes;
+            }),
+        [SEARCH_TAG]: (state, action) =>
+            produce(state, draft => {
+                draft.searchRes = action.payload.articles;
+            }),
     },
     initialState
 );
@@ -142,5 +196,7 @@ export const actionCreators = {
     getOneArticleAPI,
     createArtiApi,
     addTags,
-    getMyArticle,
+    getMyArticleAPI,
+    getMyLikeAPI,
+    searchTagAPI,
 };

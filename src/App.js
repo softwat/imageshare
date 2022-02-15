@@ -2,14 +2,16 @@ import React from "react";
 import "./App.css";
 
 import { Route } from "react-router-dom";
-import { Header } from "./components/index.js";
+
+import { Header, MyList, MyLike, Result } from "./components/index.js";
 import { Main, MyProfile } from "./pages/index.js";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Create from "./pages/Create";
 import Detail from "./pages/Detail";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
+import { loginInCheck } from "./shared/common";
 
 function App() {
   const dispatch = useDispatch();
