@@ -9,11 +9,9 @@ const api = axios.create({
 });
 
 // api.interceptors.request.use((config) => {
-// console.log(config);
-// const accessToken = document.cookie.split("=")[1];
-// console.log(accessToken);
-// config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
-// return config;
+//   const accessToken = document.cookie.split("=")[1];
+//   config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
+//   return config;
 // });
 
 api.defaults.headers.common["Authorization"] = "success";
@@ -35,7 +33,7 @@ export const apis = {
       password: pwd,
     }),
 
-  logout: () => api.get(TEST_URL("")),
+  logout: () => api.post(TEST_URL("/user/logout")),
 
   createArticle: ({
     uid,
@@ -63,4 +61,7 @@ export const apis = {
   getArticle: () => api.get(TEST_URL("articles")),
   getMyArticle: () => api.get(TEST_URL("myarticle")),
   getMyLike: () => api.get(TEST_URL("mylike")),
+
+  delArticle: (articleId) => api.delete(TEST_URL(`pictures/${articleId}`)),
+  // detailArticle: (id) => api.get(TEST_URL(`/pictures/${articleid}`)),
 };
