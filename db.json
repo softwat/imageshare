@@ -13,6 +13,18 @@
             "isLike": true
         },
         {
+            "article_id": 6,
+            "writer_id": 6,
+            "writer_nickname": "ㅜㅜㅜ",
+            "liked_users": ["2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-03",
+            "isLike": false
+        },
+        {
             "article_id": 2,
             "writer_id": 2,
             "writer_nickname": "ㅋㅋㅋ",
@@ -25,9 +37,9 @@
             "isLike": true
         },
         {
-            "article_id": 3,
-            "writer_id": 3,
-            "writer_nickname": "ㅌㅌㅌ",
+            "article_id": 2,
+            "writer_id": 2,
+            "writer_nickname": "ㅋㅋㅋ",
             "liked_users": ["1", "2", "3"],
             "uid": "1",
             "nickname": "르탄이",
@@ -49,6 +61,42 @@
             "isLike": false
         },
         {
+            "article_id": 3,
+            "writer_id": 3,
+            "writer_nickname": "ㅌㅌㅌ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "isLike": true
+        },
+        {
+            "article_id": 3,
+            "writer_id": 3,
+            "writer_nickname": "ㅌㅌㅌ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "isLike": true
+        },
+        {
+            "article_id": 3,
+            "writer_id": 3,
+            "writer_nickname": "ㅌㅌㅌ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "isLike": true
+        },
+        {
             "article_id": 5,
             "writer_id": 5,
             "writer_nickname": "ㄹㄹㄹㄹ",
@@ -61,9 +109,21 @@
             "isLike": false
         },
         {
-            "article_id": 6,
-            "writer_id": 6,
-            "writer_nickname": "ㅜㅜㅜ",
+            "article_id": 5,
+            "writer_id": 5,
+            "writer_nickname": "ㄹㄹㄹㄹ",
+            "liked_users": ["2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-03",
+            "isLike": false
+        },
+        {
+            "article_id": 5,
+            "writer_id": 5,
+            "writer_nickname": "ㄹㄹㄹㄹ",
             "liked_users": ["2", "3"],
             "uid": "1",
             "nickname": "르탄이",
