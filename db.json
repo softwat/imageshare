@@ -80,11 +80,6 @@
         "password": "1234",
         "nickname": "테스트"
     },
-    "login": {
-        "uid": 1,
-        "nickname": "르탄이",
-        "ok": true
-    },
     "idCheck": ["false"],
     "myarticle": [
         {

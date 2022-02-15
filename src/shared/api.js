@@ -1,47 +1,66 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
-    headers: {
-        'content-type': 'application/json;charset=UTF-8',
-        accept: 'application/json,',
-    },
+  baseURL: "http://localhost:3000",
+  headers: {
+    "content-type": "application/json;charset=UTF-8",
+    accept: "application/json,",
+  },
 });
 
-api.defaults.headers.common['Authorization'] = 'success';
+// api.interceptors.request.use((config) => {
+// console.log(config);
+// const accessToken = document.cookie.split("=")[1];
+// console.log(accessToken);
+// config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
+// return config;
+// });
 
-const TEST_URL = site => `http://localhost:3003/${site}`;
+api.defaults.headers.common["Authorization"] = "success";
+
+const TEST_URL = (site) => `http://localhost:3003/${site}`;
 
 export const apis = {
-    signup: ({ id, email, pwd, nickname }) =>
-        api.post(TEST_URL('signup'), {
-            login_id: id,
-            email: email,
-            password: pwd,
-            nickname: nickname,
-        }),
+  signup: ({ id, email, pwd, nickname }) =>
+    api.post("http://3.38.153.67/user/signup", {
+      username: id,
+      email: email,
+      password: pwd,
+      nickname: nickname,
+    }),
 
-    setlogin: ({ id, email, pwd, nickname }) => api.get(TEST_URL('login'), {}),
+  setlogin: ({ id, pwd }) =>
+    api.post("http://3.38.153.67/user/login", {
+      username: id,
+      password: pwd,
+    }),
 
-    logout: () => api.get(TEST_URL('')),
+  logout: () => api.get(TEST_URL("")),
 
-    createArticle: ({ uid, image, tags, date }) =>
-        api.post(TEST_URL('pictures'), {
-            uid: uid,
-            image_url: image,
-            tags: [...tags],
-            created_date: date,
-        }),
+  createArticle: ({
+    uid,
+    image_url,
+    writer_id,
+    article_id,
+    writer_nickname,
+    tags,
+    created_date,
+  }) =>
+    api.post(TEST_URL("pictures"), {
+      uid: uid,
+      article_id: article_id,
+      writer_id: writer_id,
+      writer_nickname: writer_nickname,
+      image_url: image_url,
+      tags: [...tags],
+      created_date: created_date,
+    }),
 
-    imageUrl: url => api.post(TEST_URL('imageUrl'), { image_url: url }),
+  uploadImageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
 
-    detailArticle: () => api.get(TEST_URL('/detailArc')),
+  detailArticle: () => api.get(TEST_URL("/detailArc")),
 
-    // logOut: () => api.get(TEST_URL("logout")),
-
-    // .catch(console.log("no")),
-
-    getArticle: () => api.get(TEST_URL('articles')),
-    getMyArticle: () => api.get(TEST_URL('myarticle')),
-    getMyLike: () => api.get(TEST_URL('mylike')),
+  getArticle: () => api.get(TEST_URL("articles")),
+  getMyArticle: () => api.get(TEST_URL("myarticle")),
+  getMyLike: () => api.get(TEST_URL("mylike")),
 };
