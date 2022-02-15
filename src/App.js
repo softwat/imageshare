@@ -28,7 +28,7 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/create" exact component={Create} />
-            <Route path="/detail" exact component={Detail} />
+            <Route path="/pictures/:id" component={Detail} />
         </React.Fragment>
     );
 }

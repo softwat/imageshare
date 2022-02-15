@@ -5,7 +5,10 @@ import { ImgInfo, TagList } from "./index";
 
 const ImgContainer = (props) => {
   const { history } = props;
-  const goDetail = () => history.push("/detail");
+  console.log(props.article_id);
+  const goDetail = () => {
+    history.push(`/pictures/${props.article_id}`);
+  };
 
   const styles = {
     src: props.image_url,
@@ -16,9 +19,7 @@ const ImgContainer = (props) => {
       <ImageContainer
         onClick={() => {
           goDetail();
-          console.log("img clicked");
-        }}
-        {...styles}>
+        }}>
         <Permit>
           <Button
             is_abs

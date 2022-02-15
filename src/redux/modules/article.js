@@ -39,6 +39,16 @@ const getArticleAPI = () => {
   };
 };
 
+const getOneArticleAPI = (id) => {
+  return function (dispatch) {
+    apis.getArticle().then(({ data }) => {
+      const _articles = [];
+      data.forEach((d) => _articles.push(d));
+      dispatch(getArticle(_articles));
+    });
+  };
+};
+
 const createArtiApi = (tags) => {
   return function (dispatch, getState, { history }) {
     const _user = getState().user.user;
@@ -114,12 +124,18 @@ export default handleActions(
       produce(state, (draft) => {
         draft.tags = action.payload.tags;
       }),
+    [GET_ARTICLE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.articles = action.payload.articles;
+        console.log(draft.articles);
+      }),
   },
   initialState
 );
 
 export const actionCreators = {
   getArticleAPI,
+  getOneArticleAPI,
   createArtiApi,
   addTags,
 };

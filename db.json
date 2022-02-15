@@ -1,142 +1,136 @@
 {
-  "articles": [
-    {
-      "article_id": 1,
-      "writer_id": 1,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "1",
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://e.snmc.io/i/600/s/03e6feef0b0a3066685636eff2dbc370/9102611/파란노을-parannoul-to-see-the-next-part-of-the-dream-Cover-Art.jpg",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-01",
-      "isLike": true
+    "articles": [
+        {
+            "article_id": 1,
+            "writer_id": 1,
+            "writer_nickname": "탄탄이",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://e.snmc.io/i/600/s/03e6feef0b0a3066685636eff2dbc370/9102611/파란노을-parannoul-to-see-the-next-part-of-the-dream-Cover-Art.jpg",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-01",
+            "isLike": true
+        },
+        {
+            "article_id": 2,
+            "writer_id": 2,
+            "writer_nickname": "ㅋㅋㅋ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "isLike": true
+        },
+        {
+            "article_id": 3,
+            "writer_id": 3,
+            "writer_nickname": "ㅌㅌㅌ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "isLike": true
+        },
+        {
+            "article_id": 4,
+            "writer_id": 4,
+            "writer_nickname": "ㅇㅇㅇ",
+            "liked_users": ["2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-03",
+            "isLike": false
+        },
+        {
+            "article_id": 5,
+            "writer_id": 5,
+            "writer_nickname": "ㄹㄹㄹㄹ",
+            "liked_users": ["2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-03",
+            "isLike": false
+        },
+        {
+            "article_id": 6,
+            "writer_id": 6,
+            "writer_nickname": "ㅜㅜㅜ",
+            "liked_users": ["2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-03",
+            "isLike": false
+        }
+    ],
+    "user": {},
+    "signup": {
+        "login_id": "test",
+        "email": "test@test.test",
+        "password": "1234",
+        "nickname": "테스트"
     },
-    {
-      "article_id": 2,
-      "writer_id": 2,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "1",
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-02",
-      "isLike": true
-    },
-    {
-      "article_id": 2,
-      "writer_id": 2,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "1",
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-02",
-      "isLike": true
-    },
-    {
-      "article_id": 3,
-      "writer_id": 3,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-03",
-      "isLike": false
-    },
-    {
-      "article_id": 3,
-      "writer_id": 3,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-03",
-      "isLike": false
-    },
-    {
-      "article_id": 3,
-      "writer_id": 3,
-      "writer_nickname": "탄탄이",
-      "liked_users": [
-        "2",
-        "3"
-      ],
-      "uid": "1",
-      "nickname": "르탄이",
-      "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FgdTXOitArpelSrUo6E4wjKvgSXu1_1644758744622?alt=media&token=8cb39317-3db5-4445-951b-2653e912bfa8",
-      "tags": [
-        "귀여워",
-        "멍멍이"
-      ],
-      "created_date": "2000-01-03",
-      "isLike": false
-    }
-  ],
-  "pictures": {
-    "uid": 1,
-    "article_id": 2,
-    "writer_id": 1,
-    "writer_nickname": "summer",
-    "image_url": "https://firebasestorage.googleapis.com/v0/b/imageshare-325cc.appspot.com/o/image%2Fundefined_1644886760877?alt=media&token=c5817701-2c2a-4474-b249-8dceb99c5d79",
-    "tags": [],
-    "created_date": "2022-02-15 09:59:20"
-  },
-  "user": {},
-  "signup": {
-    "login_id": "test",
-    "email": "test@test.test",
-    "password": "1234",
-    "nickname": "테스트"
-  },
-  "login": {
-    "uid": 1,
-    "nickname": "르탄이",
-    "ok": true
-  },
-  "imageUrl": {
-    "image_url": "https://firebasestorage.googleapis.com/v0/b/imageshare-325cc.appspot.com/o/image%2FIMG_2160.JPG?alt=media&token=37839eba-5277-449a-b0c6-e75edcabc449"
-  },
-  "idCheck": [
-    "false"
-  ]
+    "idCheck": ["false"],
+    "myarticle": [
+        {
+            "article_id": 1,
+            "writer_id": 1,
+            "writer_nickname": "탄탄이",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://e.snmc.io/i/600/s/03e6feef0b0a3066685636eff2dbc370/9102611/파란노을-parannoul-to-see-the-next-part-of-the-dream-Cover-Art.jpg",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-01",
+            "my_article": true
+        }
+    ],
+    "mylike": [
+        {
+            "article_id": 1,
+            "writer_id": 1,
+            "writer_nickname": "탄탄이",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://e.snmc.io/i/600/s/03e6feef0b0a3066685636eff2dbc370/9102611/파란노을-parannoul-to-see-the-next-part-of-the-dream-Cover-Art.jpg",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-01",
+            "my_like": true
+        },
+        {
+            "article_id": 2,
+            "writer_id": 2,
+            "writer_nickname": "ㅋㅋㅋ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "my_like": true
+        },
+        {
+            "article_id": 3,
+            "writer_id": 3,
+            "writer_nickname": "ㅌㅌㅌ",
+            "liked_users": ["1", "2", "3"],
+            "uid": "1",
+            "nickname": "르탄이",
+            "image_url": "https://firebasestorage.googleapis.com/v0/b/react-advanced-practice.appspot.com/o/images%2FEkq4ZeEyOOPFvH5tAnfcWE34W0Y2_1644661265114?alt=media&token=2125c78e-d405-41d5-84d5-ba136f9e3fe1",
+            "tags": ["귀여워", "멍멍이"],
+            "created_date": "2000-01-02",
+            "my_like": true
+        }
+    ]
 }
