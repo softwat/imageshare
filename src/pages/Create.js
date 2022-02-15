@@ -113,6 +113,14 @@ const CreateStyle = styled.div`
     background-color: red;
     color: #fff;
     cursor: pointer;
+
+    color: #234512;
+    background-color: #eee;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #ccff00;
+    }
   }
 `;
 

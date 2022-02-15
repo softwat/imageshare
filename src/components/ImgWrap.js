@@ -14,6 +14,7 @@ const ImgWrap = ({ image_url }) => {
 
 const ImgStyle = styled.div`
   display: flex;
+  width: 100%;
   min-height: 300px;
   margin: 20px 0;
   border: solid 1px #ccc;

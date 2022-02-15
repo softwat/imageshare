@@ -18,7 +18,7 @@ const ImgInfo = (props) => {
   return (
     <React.Fragment>
       <ImgInfoContainer>
-        {/* <p>좋아요 {liked_users.length} 개</p> */}
+        <p>좋아요 {liked_users.length} 개</p>
         <TagList tags={tags} />
       </ImgInfoContainer>
     </React.Fragment>
@@ -28,10 +28,15 @@ const ImgInfo = (props) => {
 export default ImgInfo;
 
 const ImgInfoContainer = styled.div`
-  opacity: 0;
+  /* display: flex;
+  align-items: start;
+  justify-content: space-between; */
   position: absolute;
-  /* border: 1px solid black; */
   width: 100%;
-  height: 30%;
+  min-height: 30%;
   bottom: 0;
+  padding: 20px;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.3s;
 `;
