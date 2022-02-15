@@ -7,6 +7,7 @@ import { actionCreators as acticleActions } from '../redux/modules/article';
 const Toggle = props => {
     const dispatch = useDispatch();
     const mineClick = () => {
+        console.log('mine');
         dispatch(acticleActions.getMyArticleAPI());
     };
     const likeClick = () => {

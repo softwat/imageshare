@@ -15,7 +15,7 @@ const getArticle = createAction(GET_ARTICLE, _articles => ({
 }));
 
 const getMyArticle = createAction(GET_MY_ARTICLE, _articles => ({
-    articles: _articles,
+    myArticles: _articles,
 }));
 
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
@@ -54,6 +54,16 @@ const getOneArticleAPI = id => {
     };
 };
 
+const getMyArticleAPI = () => {
+    return function (dispatch) {
+        apis.getMyArticle().then(({ data }) => {
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(getMyArticle(_articles));
+        });
+    };
+};
+
 const createArtiApi = tags => {
     return function (dispatch, getState, { history }) {
         const _user = getState().user.user;
@@ -70,6 +80,7 @@ const createArtiApi = tags => {
             ...initialArticle,
             created_date: moment().format('YYYY-MM-DD hh:mm:ss'),
         };
+
         const _upload = storage
             .ref(`image/${user_info.nickname}_${new Date().getTime()}`)
             .putString(_image, 'data_url');
@@ -133,6 +144,11 @@ export default handleActions(
                 draft.articles = action.payload.articles;
                 // console.log(draft.articles);
             }),
+        [GET_MY_ARTICLE]: (state, action) =>
+            produce(state, draft => {
+                draft.myArticles = action.payload.myArticles;
+                console.log(draft.myArticles);
+            }),
     },
     initialState
 );
@@ -142,5 +158,5 @@ export const actionCreators = {
     getOneArticleAPI,
     createArtiApi,
     addTags,
-    getMyArticle,
+    getMyArticleAPI,
 };
