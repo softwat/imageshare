@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Create from "./pages/Create";
 import Detail from "./pages/Detail";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
 import { loginInCheck } from "./shared/common";
 
