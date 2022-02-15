@@ -5,13 +5,15 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as acticleActions } from '../redux/modules/article';
 
 const Toggle = props => {
+    const { history } = props;
     const dispatch = useDispatch();
     const mineClick = () => {
-        console.log('mine');
+        history.push('/myprofile/mylist');
         dispatch(acticleActions.getMyArticleAPI());
     };
     const likeClick = () => {
-        console.log('like');
+        history.push('/myprofile/mylike');
+        dispatch(acticleActions.getMyLikeAPI());
     };
     return (
         <RadioToolBar>

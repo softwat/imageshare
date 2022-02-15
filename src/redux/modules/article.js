@@ -8,6 +8,7 @@ import { storage } from '../../shared/firebase';
 const GET_ARTICLE = 'GET_ARTICLE';
 const ADD_ARTICLE = 'ADD_ARTICLE';
 const GET_MY_ARTICLE = 'GET_MY_ARTICLE';
+const GET_MY_LIKE = 'GET_MY_LIKE';
 const ADD_TAGS = 'ADDTAGS';
 
 const getArticle = createAction(GET_ARTICLE, _articles => ({
@@ -18,10 +19,16 @@ const getMyArticle = createAction(GET_MY_ARTICLE, _articles => ({
     myArticles: _articles,
 }));
 
+const getMyLike = createAction(GET_MY_LIKE, _articles => ({
+    myLikes: _articles,
+}));
+
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
 const addTags = createAction(ADD_ARTICLE, tag => ({ tag }));
 const initialState = {
     articles: [],
+    myArticles: [],
+    myLikes: [],
 };
 
 const initialArticle = {
@@ -60,6 +67,16 @@ const getMyArticleAPI = () => {
             const _articles = [];
             data.forEach(d => _articles.push(d));
             dispatch(getMyArticle(_articles));
+        });
+    };
+};
+
+const getMyLikeAPI = () => {
+    return function (dispatch) {
+        apis.getMyLike().then(({ data }) => {
+            const _articles = [];
+            data.forEach(d => _articles.push(d));
+            dispatch(getMyLike(_articles));
         });
     };
 };
@@ -147,7 +164,10 @@ export default handleActions(
         [GET_MY_ARTICLE]: (state, action) =>
             produce(state, draft => {
                 draft.myArticles = action.payload.myArticles;
-                console.log(draft.myArticles);
+            }),
+        [GET_MY_LIKE]: (state, action) =>
+            produce(state, draft => {
+                draft.myLikes = action.payload.myLikes;
             }),
     },
     initialState
@@ -159,4 +179,5 @@ export const actionCreators = {
     createArtiApi,
     addTags,
     getMyArticleAPI,
+    getMyLikeAPI,
 };

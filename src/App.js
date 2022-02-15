@@ -3,7 +3,7 @@ import './App.css';
 
 import { Route } from 'react-router-dom';
 
-import { Header } from './components/index.js';
+import { Header, MyList, MyLike } from './components/index.js';
 import { Main, MyProfile } from './pages/index.js';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -19,12 +19,14 @@ function App() {
     React.useEffect(() => {
         dispatch(userActions.checkLogin());
         dispatch(userActions.getUser());
-    }, []);
+    });
     return (
         <React.Fragment>
             <Route path="/" component={Header}></Route>
             <Route path="/" exact component={Main}></Route>
             <Route path="/myprofile" exact component={MyProfile}></Route>
+            <Route path="/myprofile/mylist" exact component={MyList}></Route>
+            <Route path="/myprofile/mylike" exact component={MyLike}></Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/create" exact component={Create} />
