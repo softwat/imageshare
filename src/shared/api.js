@@ -8,46 +8,57 @@ const api = axios.create({
   },
 });
 
+// api.interceptors.request.use((config) => {
+// console.log(config);
+// const accessToken = document.cookie.split("=")[1];
+// console.log(accessToken);
+// config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
+// return config;
+// });
+
 api.defaults.headers.common["Authorization"] = "success";
 
 const TEST_URL = (site) => `http://localhost:3003/${site}`;
 
 export const apis = {
   signup: ({ id, email, pwd, nickname }) =>
-    api.post(TEST_URL("signup"), {
+    api.post("http://3.38.153.67/user/signup", {
       username: id,
       email: email,
       password: pwd,
       nickname: nickname,
     }),
 
-  setlogin: ({ id, pwd }) => api.get(TEST_URL("login")),
-  // setlogin: ({ id, email, pwd, nickname }) =>
-  // api.get(TEST_URL("login"), {
-  //   username: id,
-  //   password: pwd,
-  // }),
+  setlogin: ({ id, pwd }) =>
+    api.post("http://3.38.153.67/user/login", {
+      username: id,
+      password: pwd,
+    }),
 
   logout: () => api.get(TEST_URL("")),
 
-  createArticle: ({ uid, image, tags, date }) =>
+  createArticle: ({
+    uid,
+    image_url,
+    writer_id,
+    article_id,
+    writer_nickname,
+    tags,
+    created_date,
+  }) =>
     api.post(TEST_URL("pictures"), {
       uid: uid,
-      image_url: image,
+      article_id: article_id,
+      writer_id: writer_id,
+      writer_nickname: writer_nickname,
+      image_url: image_url,
       tags: [...tags],
-      created_date: date,
+      created_date: created_date,
     }),
 
-  imageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
+  uploadImageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
 
   detailArticle: () => api.get(TEST_URL("/detailArc")),
 
-  // logOut: () => api.get(TEST_URL("logout")),
-
-  // .catch(console.log("no")),
-
   getArticle: () => api.get(TEST_URL("articles")),
-
-  // test
-  isLogin: () => api.get(TEST_URL("loginOk")),
 };

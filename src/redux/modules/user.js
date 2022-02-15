@@ -20,12 +20,13 @@ const initialState = {
 };
 
 // 회원가입 미들웨어 api
-const signUpApi = (user) => {
+const signUpApi = async (user) => {
   return function (dispatch, getState, { history }) {
     apis
       .signup(user)
       .then((res) => {
         console.log("login success");
+        console.log(res);
         dispatch(
           setUser({
             uid: res.uid,
@@ -54,13 +55,14 @@ const loginActionApi = (user) => {
         dispatch(
           setUser({
             // uid: res.uid,
-            login_id: user.id,
+            username: user.id,
             password: user.pwd,
           })
         );
-        console.log("login success");
+        const token = res.headers.authorization;
+        addCookie("token", token);
         alert(`${user.id}님 반갑습니다.`);
-        history.replace("/");
+        // history.replace("/");
       })
       .catch((err) => {
         console.log("no login so sad");
@@ -110,34 +112,3 @@ const actionCreators = {
 };
 
 export { actionCreators };
-
-// const checkDuplicate = createAction(CHECK_DUPLICATE, (user_id) => ({
-//   user_id,
-// }));
-
-// const checkDuplicate = createAction(CHECK_DUPLICATE, (user_id) => ({
-//   user_id,
-// }));
-
-// 아이디 중복확인
-// const loginCheckApi = (id) => {
-//   return function (dispatch) {
-//     apis
-//       .loginCheck(id)
-//       .then((res) => {
-//         console.log(res.data[0]);
-
-//         if (res.data[0] === true) {
-//           dispatch(checkDuplicate(true));
-//           window.alert("사용 가능한 아이디입니다.");
-//         } else {
-//           dispatch(checkDuplicate(false));
-//           window.alert("이미 존재하는 아이디 또는 이메일입니다.");
-//         }
-//       })
-//       .catch((err) => {
-//         dispatch(checkDuplicate(false));
-//       });
-//   };
-// };
-//
