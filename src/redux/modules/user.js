@@ -96,7 +96,14 @@ const checkLoginApi = (token) => {
       },
     })
       .then((res) => {
-        console.log(res);
+        console.log();
+        dispatch(
+          setUser({
+            uid: res.data.uid,
+            nickname: res.data.nickname,
+          })
+        );
+        history.replace("/");
       })
       .catch((err) => {
         console.log(err);
