@@ -56,10 +56,12 @@ const getArticleAPI = (token) => {
       },
     })
       .then(({ data }) => {
-        console.log(data);
         const _articles = [];
         data.forEach((d) => _articles.push(d));
-        dispatch(getArticle(_articles));
+        const _articles_sort = _articles.sort(
+          (a, b) => b.article_id - a.article_id
+        );
+        dispatch(getArticle(_articles_sort));
       })
       .catch((err) => {
         console.log(err);
