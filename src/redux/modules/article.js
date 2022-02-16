@@ -45,13 +45,26 @@ const initialArticle = {
   created_date: moment().format("YYYY-MM-DD hh:mm:ss"),
 };
 
-const getArticleAPI = () => {
+const getArticleAPI = (token) => {
+  // const getArticleAPI = () => {
   return function (dispatch) {
-    apis.getArticle().then(({ data }) => {
-      const _articles = [];
-      data.forEach((d) => _articles.push(d));
-      dispatch(getArticle(_articles));
-    });
+    axios({
+      method: "get",
+      url: "http://3.38.153.67/articles",
+      headers: {
+        Authorization: `${token}`,
+      },
+    })
+      .then(({ data }) => {
+        console.log(data);
+        const _articles = [];
+        data.forEach((d) => _articles.push(d));
+        dispatch(getArticle(_articles));
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("게시물 가져오기 실패!");
+      });
   };
 };
 

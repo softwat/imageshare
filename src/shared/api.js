@@ -55,7 +55,7 @@ export const apis = {
 
   detailArticle: () => api.get(TEST_URL("/detailArc")),
 
-  getArticle: () => api.get(TEST_URL("articles")),
+  getArticle: () => api.get("http://3.38.153.67/articles"),
   getMyArticle: () => api.get(TEST_URL("myarticle")),
   getMyLike: () => api.get(TEST_URL("mylike")),
   searchTag: (_keyword) => {
