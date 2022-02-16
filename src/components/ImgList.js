@@ -96,27 +96,15 @@ const Write = styled.div`
     opacity: 0;
     transition: all 0.3s;
     border-radius: 20px;
-    background: rgba(0, 0, 0, 0.1);
+  }
 
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(3px);
-        background: #cbff00a1;
-        background: rgba(0, 0, 0, 0.4);
-        opacity: 0;
-        transition: all 0.3s;
-    }
-    &:hover:before {
-        opacity: 1;
-    }
-    &:hover > * {
-        opacity: 1;
-    }
+  &:hover:before {
+    opacity: 1;
+  }
+
+  &:hover > * {
+    opacity: 1;
+  }
 `;
 
 const Plus = styled.span`
