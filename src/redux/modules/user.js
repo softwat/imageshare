@@ -66,7 +66,7 @@ const loginActionApi = (user) => {
         addCookie("token", token);
         sessionStorage.setItem("token", token);
         alert(`${user.id}님 반갑습니다.`);
-        // history.replace("/");
+        history.replace("/");
       })
       .catch((err) => {
         console.log("no login so sad");
@@ -90,8 +90,6 @@ const checkLoginApi = (token) => {
       method: "post",
       url: "http://3.38.153.67/user/islogin",
       headers: {
-        "content-type": "applicaton/json;charset=UTF-8",
-        accept: "application/json",
         Authorization: `${token}`,
       },
     })
@@ -103,7 +101,6 @@ const checkLoginApi = (token) => {
             nickname: res.data.nickname,
           })
         );
-        history.replace("/");
       })
       .catch((err) => {
         console.log(err);
