@@ -54,9 +54,9 @@ const Writer = styled.h2`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 300px;
+  display: flex;
   height: fit-content;
-  margin: 20px;
+  margin: 20px 10px;
   overflow: hidden;
   transition: all 0.3s;
   border-radius: 20px;
@@ -72,6 +72,7 @@ const ImageContainer = styled.div`
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     transition: all 0.3s;
+    border-radius: 30px;
   }
   &:hover:before {
     opacity: 1;
@@ -84,7 +85,6 @@ const ImageContainer = styled.div`
 const Img = styled.img`
   width: 100%;
   border-radius: 28px;
-
   height: auto;
   object-fit: fill;
 `;

@@ -75,9 +75,9 @@ const Write = styled.div`
   /* display: flex; */
   position: relative;
   /* float: left; */
-  width: 300px;
+  width: auto;
   height: 300px;
-  margin: 20px;
+  margin: 20px 0;
   overflow: hidden;
   transition: all 0.3s;
   border-radius: 20px;

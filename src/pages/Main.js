@@ -13,6 +13,8 @@ const Main = (props) => {
 
 const MainContainer = styled.div`
   height: 100vh;
+  width: 1130px;
+  margin: 0 auto;
 `;
 
 export default Main;

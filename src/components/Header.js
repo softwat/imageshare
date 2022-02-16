@@ -56,11 +56,14 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
+  width: 1130px;
   height: 40px;
   margin: 10px auto;
 
   button {
     margin-left: 10px;
+    border-radius: 100px;
+    color: #797979;
 
     &:hover {
       border-color: #f69c9c;
