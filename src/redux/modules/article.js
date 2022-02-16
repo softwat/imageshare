@@ -91,14 +91,22 @@ const likeApi = (article_id, uid, token) => {
     };
 };
 
-const searchTagAPI = keyword => {
+const searchTagAPI = (keyword, token) => {
     return function (dispatch) {
-        apis.searchTag(keyword).then(({ data }) => {
-            console.log(data);
-            const _articles = [];
-            data.forEach(d => _articles.push(d));
-            dispatch(seachTag(_articles));
-        });
+        axios({
+            method: 'get',
+            url: `http://3.38.153.67/pictures/${keyword}`,
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+            .then(({ data }) => {
+                console.log(data);
+                const _articles = [];
+                data.forEach(d => _articles.push(d));
+                dispatch(seachTag(_articles));
+            })
+            .catch(err => console.log(err));
     };
 };
 
@@ -146,7 +154,7 @@ const createArtiApi = (tags, token) => {
         const user_info = {
             uid: _user.uid,
             nickname: _user.nickname,
-            writer_nickname: 'summer',
+            // writer_nickname: 'summer',
         };
 
         const _article = {
@@ -164,6 +172,13 @@ const createArtiApi = (tags, token) => {
                     return url;
                 })
                 .then(url => {
+                    console.log({
+                        data: {
+                            uid: _user.uid,
+                            image_url: url,
+                            tags: tags,
+                        },
+                    });
                     axios({
                         method: 'post',
                         url: 'http://3.38.153.67/pictures',
