@@ -5,7 +5,6 @@ import "../App.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getCookie } from "../shared/cookie";
-import { getToken } from "../shared/token";
 
 import { actionCreators as articleActions } from "../redux/modules/article.js";
 

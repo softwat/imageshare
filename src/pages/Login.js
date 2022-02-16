@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import Input from "../element/Input";
+import Input from "../elements/Input";
 import styled from "styled-components";
 import BlockWrap from "../components/BlockWrap";
 

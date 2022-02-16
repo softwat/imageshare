@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Input from "../element/Input";
+import Input from "../elements/Input";
 import BlockWrap from "../components/BlockWrap";
 import { LoginStyle } from "./Login";
 

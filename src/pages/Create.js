@@ -5,7 +5,6 @@ import ImgUpload from "../shared/ImgUpload";
 import ImgWrap from "../components/ImgWrap";
 import { history } from "../redux/configureStore";
 import { getCookie } from "../shared/cookie";
-import { getToken } from "../shared/token";
 import { actionCreators as postActions } from "../redux/modules/article";
 
 const Create = (props) => {
