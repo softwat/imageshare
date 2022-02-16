@@ -27,14 +27,14 @@ const getMyLike = createAction(GET_MY_LIKE, _articles => ({
 }));
 
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
-const addLike = createAction(ADD_LIKE, isLike => ({ isLike }));
+const addLike = createAction(ADD_LIKE, myLikes => ({ myLikes }));
 const addTags = createAction(ADD_ARTICLE, tag => ({ tag }));
 const seachTag = createAction(SEARCH_TAG, articles => ({ articles }));
 
 const initialState = {
     articles: [],
     myArticles: [],
-    isLike: false,
+    myLikes: [],
 };
 
 const initialArticle = {
@@ -58,7 +58,6 @@ const getArticleAPI = token => {
             },
         })
             .then(({ data }) => {
-                console.log(data);
                 const _articles = [];
                 data.forEach(d => _articles.push(d));
                 const _articles_sort = _articles.sort(
@@ -75,7 +74,6 @@ const getArticleAPI = token => {
 
 const likeApi = (article_id, uid, token) => {
     return function (dispatch) {
-        console.log(article_id, uid, token);
         axios({
             method: 'post',
             url: 'http://3.38.153.67/pictures/like',
@@ -85,8 +83,7 @@ const likeApi = (article_id, uid, token) => {
             data: { article_id, uid },
         })
             .then(data => {
-                console.log(data);
-                dispatch(addLike(data.data));
+                dispatch(addLike(article_id));
             })
             .catch(err => {
                 console.log(err);
@@ -217,21 +214,17 @@ export default handleActions(
                 draft.articles.unshift(action.payload.articles);
             }),
         [ADD_LIKE]: (state, action) =>
-            // produce(state, draft => {
-            //     if (
-            //         draft.myLikes.find(like => like === action.payload.myLikes)
-            //     ) {
-            //         draft.myLikes = draft.myLikes.filter(
-            //             like => like !== action.payload.myLikes
-            //         );
-            //     } else {
-            //         draft.myLikes.push(action.payload.myLikes);
-            //     }
-            // }),
             produce(state, draft => {
-                draft.isLike = action.payload.isLike;
+                if (
+                    draft.myLikes.find(like => like === action.payload.myLikes)
+                ) {
+                    draft.myLikes = draft.myLikes.filter(
+                        like => like !== action.payload.myLikes
+                    );
+                } else {
+                    draft.myLikes.push(action.payload.myLikes);
+                }
             }),
-
         [ADD_TAGS]: (state, action) =>
             produce(state, draft => {
                 draft.tags = action.payload.tags;
@@ -266,4 +259,5 @@ export const actionCreators = {
     getMyArticleAPI,
     getMyLikeAPI,
     searchTagAPI,
+    addLike,
 };

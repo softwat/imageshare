@@ -11,14 +11,16 @@ import { ImgInfo, TagList } from './index';
 const ImgContainer = props => {
     const { history } = props;
     const dispatch = useDispatch();
+
     const { user } = useSelector(state => state.user);
-    const isLike = useSelector(state => state.article.isLike);
-    const [like, setLike] = React.useState(isLike);
+    const myLikes = useSelector(state => state.article.myLikes);
     const token = getCookie('token');
 
     React.useEffect(() => {
-        // if (!myLike) return;
-    });
+        if (props.liked_users.includes(user.uid)) {
+            dispatch(articleActions.addLike(props.article_id));
+        }
+    }, []);
 
     const goDetail = () => {
         history.push(`/pictures/${props.article_id}`);
@@ -38,12 +40,11 @@ const ImgContainer = props => {
             >
                 <Writer>{props.writer_nickname}</Writer>
                 <Permit>
-                    {isLike ? (
+                    {myLikes.filter(el => el === props.article_id).length ? (
                         <Button
                             is_abs
                             liked={'true'}
                             _onClick={e => {
-                                console.log('unliked!!');
                                 dispatch(
                                     articleActions.likeApi(
                                         props.article_id,
@@ -51,7 +52,6 @@ const ImgContainer = props => {
                                         token
                                     )
                                 );
-                                setLike(false);
                                 e.stopPropagation(); // 버블링 방지
                             }}
                         ></Button>
@@ -60,7 +60,6 @@ const ImgContainer = props => {
                             is_abs
                             liked={'false'}
                             _onClick={e => {
-                                console.log('liked!!');
                                 dispatch(
                                     articleActions.likeApi(
                                         props.article_id,
@@ -68,7 +67,6 @@ const ImgContainer = props => {
                                         token
                                     )
                                 );
-                                setLike(true);
                                 e.stopPropagation(); // 버블링 방지
                             }}
                         ></Button>
