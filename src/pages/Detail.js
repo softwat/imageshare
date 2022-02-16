@@ -9,6 +9,7 @@ import PostInfo from "../components/PostInfo";
 import ImgWrap from "../components/ImgWrap";
 import LikeIt from "../components/LikeIt";
 import TagList from "../components/TagList";
+import { getCookie } from "../shared/cookie";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Detail = (props) => {
     if (article) {
       return;
     }
-    dispatch(articleActions.getOneArticleAPI(id));
+    dispatch(articleActions.getOneArticleAPI(id, getCookie("token")));
   }, []);
 
   return (
