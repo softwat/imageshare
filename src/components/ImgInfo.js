@@ -18,7 +18,7 @@ const ImgInfo = (props) => {
   return (
     <React.Fragment>
       <ImgInfoContainer>
-        <p>좋아요 {liked_users.length} 개</p>
+        <p>좋아요 {liked_users?.length} 개</p>
         <TagList tags={tags} />
       </ImgInfoContainer>
     </React.Fragment>

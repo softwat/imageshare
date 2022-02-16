@@ -126,14 +126,6 @@ const createArtiApi = (tags, token) => {
           return url;
         })
         .then((url) => {
-          //   apis
-          //     .createArticle({
-          //       ...initialArticle,
-          //       ..._article,
-          //       ...user_info,
-          //       image_url: url,
-          //       tags: [...tags],
-          //     })
           axios({
             method: "post",
             url: "http://3.38.153.67/pictures",
