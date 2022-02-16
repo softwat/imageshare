@@ -5,7 +5,6 @@ import ImgUpload from "../shared/ImgUpload";
 import ImgWrap from "../components/ImgWrap";
 
 import { getCookie } from "../shared/cookie";
-import { history } from "../redux/configureStore";
 import { actionCreators as postActions } from "../redux/modules/article";
 
 const Create = (props) => {
@@ -26,8 +25,6 @@ const Create = (props) => {
   const isLogin = getCookie("is_login");
 
   React.useEffect(() => {
-    // console.log(getCookie("is_login"));
-
     if (!uploadImg?.preview || !uploadImg.uploading) {
       return;
     }
@@ -44,6 +41,8 @@ const Create = (props) => {
 
   const createArti = () => {
     const toTag = tag.replace(/(\s*)/g, "").trim().split("#").splice(1);
+    const token = sessionStorage.getItem("token").split("BEARER ")[1];
+    console.log(token);
     if (uploadImg.preview === null) {
       alert("이미지를 선택해주세요");
       return;
@@ -51,8 +50,9 @@ const Create = (props) => {
       alert("태그를 입력해주세요");
       return;
     }
-    dispatch(postActions.createArtiApi(toTag));
+    dispatch(postActions.createArtiApi(toTag, `Bearer ${token}`));
   };
+
   return (
     <CreateStyle>
       <h2>이미지 업로드</h2>

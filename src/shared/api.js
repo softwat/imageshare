@@ -38,20 +38,20 @@ export const apis = {
   createArticle: ({
     uid,
     image_url,
-    writer_id,
-    article_id,
-    writer_nickname,
-    tags,
-    created_date,
+    // writer_id,
+    // article_id,
+    // writer_nickname,
+    // tags,
+    // created_date,
   }) =>
-    api.post(TEST_URL("pictures"), {
+    api.post("http://3.38.153.67/pictures", {
       uid: uid,
-      article_id: article_id,
-      writer_id: writer_id,
-      writer_nickname: writer_nickname,
+      // article_id: article_id,
+      // writer_id: writer_id,
+      // writer_nickname: writer_nickname,
       image_url: image_url,
-      tags: [...tags],
-      created_date: created_date,
+      // tags: [...tags],
+      // created_date: created_date,
     }),
 
   uploadImageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
