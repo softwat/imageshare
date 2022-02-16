@@ -128,7 +128,6 @@ const createArtiApi = (tags, token) => {
 
     const _article = {
       ...initialArticle,
-      created_date: moment().format("YYYY-MM-DD hh:mm:ss"),
     };
 
     const _upload = storage
@@ -148,6 +147,7 @@ const createArtiApi = (tags, token) => {
             data: {
               uid: _user.uid,
               image_url: url,
+              tags: tags,
             },
             headers: {
               Authorization: `${token}`,
