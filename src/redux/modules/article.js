@@ -79,11 +79,17 @@ const searchTagAPI = (keyword) => {
   };
 };
 
-const getOneArticleAPI = (id) => {
+const getOneArticleAPI = (id, token) => {
   return function (dispatch) {
-    apis.getArticle().then(({ data }) => {
+    axios({
+      method: "get",
+      url: "http://3.38.153.67/articles",
+      headers: {
+        Authorization: `${token}`,
+      },
+    }).then(({ data }) => {
       const _articles = [];
-      data.forEach((d) => _articles.push(d));
+      data?.forEach((d) => _articles.push(d));
       dispatch(getArticle(_articles));
     });
   };
@@ -113,8 +119,6 @@ const createArtiApi = (tags, token) => {
   return function (dispatch, getState, { history }) {
     const _user = getState().user.user;
     const _image = getState().image.preview;
-    console.log(_user);
-    console.log(_image);
 
     const user_info = {
       uid: _user.uid,
@@ -132,7 +136,6 @@ const createArtiApi = (tags, token) => {
       .putString(_image, "data_url");
 
     _upload.then((snapshot) => {
-      console.log("이미지 업로드");
       snapshot.ref
         .getDownloadURL()
         .then((url) => {

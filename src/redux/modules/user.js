@@ -64,7 +64,6 @@ const loginActionApi = (user) => {
         );
         const token = res.headers.authorization;
         addCookie("token", token);
-        sessionStorage.setItem("token", token);
         alert(`${user.id}님 반갑습니다.`);
         history.replace("/");
       })
