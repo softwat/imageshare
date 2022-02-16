@@ -1,43 +1,44 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
-  headers: {},
+    baseURL: 'http://localhost:3000',
+    headers: {},
 });
 
-const TEST_URL = (site) => `http://localhost:3003/${site}`;
+const TEST_URL = site => `http://localhost:3003/${site}`;
 
 export const apis = {
-  signup: ({ id, email, pwd, nickname }) =>
-    api.post("http://3.38.153.67/user/signup", {
-      username: id,
-      email: email,
-      password: pwd,
-      nickname: nickname,
-    }),
+    signup: ({ id, email, pwd, nickname }) =>
+        api.post('http://3.38.153.67/user/signup', {
+            username: id,
+            email: email,
+            password: pwd,
+            nickname: nickname,
+        }),
 
-  setlogin: ({ id, pwd }) =>
-    api.post("http://3.38.153.67/user/login", {
-      username: id,
-      password: pwd,
-    }),
+    setlogin: ({ id, pwd }) =>
+        api.post('http://3.38.153.67/user/login', {
+            username: id,
+            password: pwd,
+        }),
 
-  logout: () => api.post(TEST_URL("/user/logout")),
+    logout: () => api.post(TEST_URL('/user/logout')),
 
-  uploadImageUrl: (url) => api.post(TEST_URL("imageUrl"), { image_url: url }),
+    uploadImageUrl: url => api.post(TEST_URL('imageUrl'), { image_url: url }),
 
-  getMyArticle: () => api.get(TEST_URL("myarticle")),
-  getMyLike: () => api.get(TEST_URL("mylike")),
-  searchTag: (_keyword) => {
-    const keyword = encodeURI(encodeURIComponent(_keyword));
-    console.log(keyword); //안녕
-    // utf8 %EC%95%88%EB%85%95
-    // uni-code %25EC%2595%2588%25EB%2585%2595
-    return api.get(TEST_URL(keyword));
-  },
+    getMyArticle: () => api.get(TEST_URL('myarticle')),
+    getMyLike: () => api.get(TEST_URL('mylike')),
 
-  delArticle: (articleId) => api.delete(TEST_URL(`pictures/${articleId}`)),
-  // detailArticle: (id) => api.get(TEST_URL(`/pictures/${articleid}`)),
+    searchTag: _keyword => {
+        const keyword = encodeURI(encodeURIComponent(_keyword));
+        console.log(keyword); //안녕
+        // utf8 %EC%95%88%EB%85%95
+        // uni-code %25EC%2595%2588%25EB%2585%2595
+        return api.get(`http://3.38.153.67/${keyword}`);
+    },
+
+    delArticle: articleId => api.delete(TEST_URL(`pictures/${articleId}`)),
+    // detailArticle: (id) => api.get(TEST_URL(`/pictures/${articleid}`)),
 };
 
 export default api;

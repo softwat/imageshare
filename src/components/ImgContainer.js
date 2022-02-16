@@ -17,7 +17,7 @@ const ImgContainer = props => {
     const token = getCookie('token');
 
     React.useEffect(() => {
-        if (props.liked_users.includes(user.uid)) {
+        if (props.liked_users?.includes(user.uid)) {
             dispatch(articleActions.addLike(props.article_id));
         }
     }, []);

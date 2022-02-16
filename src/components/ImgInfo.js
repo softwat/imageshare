@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { TagList } from './index';
 
+import { useSelector } from 'react-redux';
+
 const ImgInfo = props => {
     const {
         article_id,
@@ -15,6 +17,12 @@ const ImgInfo = props => {
         writer_id,
         writer_nickname,
     } = props;
+
+    const articles = useSelector(state => state.article.articles);
+
+    React.useEffect(() => {
+        console.log(articles);
+    }, [liked_users]);
     return (
         <React.Fragment>
             <ImgInfoContainer>
