@@ -4,10 +4,13 @@ import Masonry from 'react-masonry-css';
 import '../App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookie } from '../shared/cookie';
+import { getToken } from '../shared/token';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
 import { ImgContainer } from './index.js';
+import { Permit } from '../elements/index.js';
 
 const ImgList = props => {
     const dispatch = useDispatch();
@@ -24,11 +27,17 @@ const ImgList = props => {
         500: 1,
     };
 
+    const isLogin = getCookie('is_login');
+
     React.useEffect(() => {
         if (articles < 2) {
-            dispatch(articleActions.getArticleAPI());
+            // const token = sessionStorage.getItem('token')?.split('BEARER ')[1];
+            // console.log(token);
+            // console.log('article 요청');
+            // dispatch(articleActions.getArticleAPI(`Bearer ${token}`));
+            dispatch(articleActions.getArticleAPI(getToken()));
         }
-    });
+    }, []);
 
     return history.location.pathname === '/myprofile' ? (
         <React.Fragment>
@@ -57,13 +66,15 @@ const ImgList = props => {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
             >
-                <Write
-                    onClick={() => {
-                        history.push('/create');
-                    }}
-                >
-                    <Plus>+</Plus>
-                </Write>
+                <Permit>
+                    <Write
+                        onClick={() => {
+                            history.push('/create');
+                        }}
+                    >
+                        <Plus>+</Plus>
+                    </Write>
+                </Permit>
                 {articles.map((article, idx) => {
                     return (
                         <ImgContainer
