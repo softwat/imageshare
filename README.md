@@ -26,7 +26,7 @@
 </br>
 </br>
 
-## 2. 사용 기술 및 서버
+## 2. 사용 기술 및 서버, API 명세서
 
 </br>
 
@@ -41,6 +41,11 @@
 - JavaScript, React, Axios, Firebase, S3
   </br>
   </br>
+ 
+ 
+  API
+- https://www.notion.so/6d159ef59e204014828f80bab7156e67?v=17eda0e9955042dfac80b9954aa2c39a
+
   </br>
 
 ## 3. 팀 노션 페이지
@@ -50,7 +55,7 @@
 
 🔗 https://www.notion.so/99-7-Week-06-13956b3b1dee4ef8a603dd1fd188c1d3
 
-</br>
+
 </br>
 </br>
 
@@ -59,6 +64,8 @@
 </br>
 🔗 https://www.youtube.com/watch?v=yoxtgmjYTA8
 </br>
+</br>
+
 
 ## 5. 핵심 기능
 
