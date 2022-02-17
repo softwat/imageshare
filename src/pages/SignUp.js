@@ -83,14 +83,14 @@ const SignUp = (props) => {
         <Input
           label="패스워드"
           id="pwd"
-          type="text"
+          type="password"
           placeholder="비밀번호를 입력해주세요"
           onChange={onChange}
         />
         <Input
           label="패스워드 재입력"
           id="re_pwd"
-          type="text"
+          type="password"
           placeholder="비밀번호를 재입력해주세요"
           onChange={onChange}
         />

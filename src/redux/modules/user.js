@@ -27,8 +27,10 @@ const signUpApi = (user) => {
     apis
       .signup(user)
       .then((res) => {
-        console.log("login success");
-        console.log(res);
+        if (!res.data.username) {
+          throw new Error("Uh-oh!");
+        }
+
         dispatch(
           setUser({
             uid: res.uid,
@@ -38,9 +40,10 @@ const signUpApi = (user) => {
             email: user.email,
           })
         );
-        history.replace("/");
+        history.replace("/login");
       })
       .catch((err) => {
+        alert("회원가입에 실패하셨습니다.");
         console.log("no signup so sad");
         console.log(err);
       });
@@ -53,8 +56,6 @@ const loginActionApi = (user) => {
     apis
       .setlogin(user)
       .then((res) => {
-        console.log("도착했니?");
-        console.log(res);
         dispatch(
           setUser({
             // uid: res.uid,
@@ -64,10 +65,13 @@ const loginActionApi = (user) => {
         );
         const token = res.headers.authorization;
         addCookie("token", token);
-        alert(`${user.id}님 반갑습니다.`);
+        if (!token) {
+          throw new Error("Uh-oh!");
+        }
         history.replace("/");
       })
       .catch((err) => {
+        alert("잘 못입력하셨습니다");
         console.log("no login so sad");
         console.log(err);
       });
@@ -93,7 +97,6 @@ const checkLoginApi = (token) => {
       },
     })
       .then((res) => {
-        console.log();
         dispatch(
           setUser({
             uid: res.data.uid,
@@ -113,8 +116,6 @@ export default handleActions(
       produce(state, (draft) => {
         addCookie("is_login", true);
         draft.user = action.payload.user;
-        console.log(draft.user);
-        draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

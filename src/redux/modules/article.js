@@ -35,6 +35,7 @@ const initialState = {
     articles: [],
     myArticles: [],
     myLikes: [],
+    likeCount: 0,
 };
 
 const initialArticle = {
@@ -73,7 +74,7 @@ const getArticleAPI = token => {
 };
 
 const likeApi = (article_id, uid, token) => {
-    return function (dispatch) {
+    return function (dispatch, getState) {
         axios({
             method: 'post',
             url: 'http://3.38.153.67/pictures/like',
@@ -83,7 +84,15 @@ const likeApi = (article_id, uid, token) => {
             data: { article_id, uid },
         })
             .then(data => {
+                const _target_likes = getState().article.articles;
+                const target_likes = _target_likes.find(
+                    v => v.article_id === article_id
+                );
                 dispatch(addLike(article_id));
+                // console.log(_target_likes);
+                // console.log(data);
+                // console.log(target_likes.liked_users);
+                // console.log(article_id);
             })
             .catch(err => {
                 console.log(err);
@@ -101,6 +110,7 @@ const searchTagAPI = (keyword, token) => {
             },
         })
             .then(({ data }) => {
+                console.log(data);
                 const _articles = [];
                 data.forEach(d => _articles.push(d));
                 dispatch(seachTag(_articles));
@@ -124,26 +134,6 @@ const getOneArticleAPI = (id, token) => {
         });
     };
 };
-
-// const getMyArticleAPI = () => {
-//     return function (dispatch) {
-//         apis.getMyArticle().then(({ data }) => {
-//             const _articles = [];
-//             data.forEach(d => _articles.push(d));
-//             dispatch(getMyArticle(_articles));
-//         });
-//     };
-// };
-
-// const getMyLikeAPI = () => {
-//     return function (dispatch) {
-//         apis.getMyLike().then(({ data }) => {
-//             const _articles = [];
-//             data.forEach(d => _articles.push(d));
-//             dispatch(getMyLike(_articles));
-//         });
-//     };
-// };
 
 const createArtiApi = (tags, token) => {
     return function (dispatch, getState, { history }) {
