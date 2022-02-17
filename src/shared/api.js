@@ -37,7 +37,8 @@ export const apis = {
         return api.get(`http://3.38.153.67/${keyword}`);
     },
 
-    delArticle: articleId => api.delete(TEST_URL(`pictures/${articleId}`)),
+    delArticle: articleId =>
+        api.delete(`http://3.38.153.67/pictures/${articleId}`),
     // detailArticle: (id) => api.get(TEST_URL(`/pictures/${articleid}`)),
 };
 
