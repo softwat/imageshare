@@ -18,7 +18,7 @@ const MyLike = props => {
         if (myLikes) {
             return;
         }
-        dispatch(articleActions.getMyLikeAPI());
+        // dispatch(articleActions.getMyLikeAPI());
     }, []);
 
     return (
