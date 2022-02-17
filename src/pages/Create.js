@@ -107,7 +107,7 @@ const CreateStyle = styled.div`
     font-size: 16px;
     padding: 6px 10px;
     border: none;
-    background-color: red;
+    background-color: #ff54b0;
     color: #fff;
     cursor: pointer;
     transition: all 0.3s;

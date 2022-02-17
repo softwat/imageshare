@@ -56,7 +56,6 @@ const ImgContainer = props => {
                                     )
                                 );
                                 setLikeNum(1);
-                                console.log(likeNum);
                                 e.stopPropagation(); // 버블링 방지
                             }}
                         ></Button>
@@ -72,8 +71,7 @@ const ImgContainer = props => {
                                         token
                                     )
                                 );
-                                setLikeNum(0);
-                                console.log(likeNum);
+                                setLikeNum(-1);
                                 e.stopPropagation(); // 버블링 방지
                             }}
                         ></Button>

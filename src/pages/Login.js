@@ -73,11 +73,12 @@ export const LoginStyle = styled.div`
     width: 100%;
     margin-top: 20px;
     padding: 13px;
-    background-color: red;
+    background-color: #ff54b0;
     border: none;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
+    border-radius: 30px;
   }
 `;
 
