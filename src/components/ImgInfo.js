@@ -19,16 +19,24 @@ const ImgInfo = props => {
         likeNum,
     } = props;
 
-    const _like_cnt = liked_users?.length;
-    const like_cnt = liked_users?.length;
-
     const articles = useSelector(state => state.article.articles);
+    const article = articles?.filter(el => el.article_id === article_id);
+    let like_cnt = article[0].liked_users?.length;
+    const [_like_cnt, setLikeCnt] = React.useState(like_cnt);
 
-    React.useEffect(() => {}, [liked_users]);
+    React.useEffect(() => {
+        console.log(like_cnt);
+    }, []);
     return (
         <React.Fragment>
             <ImgInfoContainer>
-                <p>좋아요 {like_cnt + likeNum} 개</p>
+                <p>
+                    좋아요
+                    {_like_cnt < like_cnt
+                        ? _like_cnt + likeNum
+                        : _like_cnt + likeNum}
+                    개
+                </p>
                 <TagList tags={tags} />
             </ImgInfoContainer>
         </React.Fragment>
