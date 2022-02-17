@@ -13,6 +13,7 @@ const GET_MY_ARTICLE = "GET_MY_ARTICLE";
 const GET_MY_LIKE = "GET_MY_LIKE";
 const ADD_TAGS = "ADDTAGS";
 const SEARCH_TAG = "SEARCH_TAG";
+const DEL_ARTI = "DEL_ARTI";
 
 const getArticle = createAction(GET_ARTICLE, (_articles) => ({
   articles: _articles,
@@ -30,6 +31,7 @@ const addArticle = createAction(ADD_ARTICLE, (articles) => ({ articles }));
 const addLike = createAction(ADD_LIKE, (myLikes) => ({ myLikes }));
 const addTags = createAction(ADD_ARTICLE, (tag) => ({ tag }));
 const seachTag = createAction(SEARCH_TAG, (articles) => ({ articles }));
+const delArti = createAction(DEL_ARTI, (articles_id) => ({ articles_id }));
 
 const initialState = {
   articles: [],
@@ -256,13 +258,16 @@ const createArtiApi = (tags, token) => {
 };
 
 const deleApi = (article_id, token) => {
-  return function (dispatch) {
+  return function (dispatch, getState, { history }) {
     axios({
       method: "delete",
       url: `http://3.38.153.67/pictures/${article_id}`,
       headers: {
         Authorization: `${token}`,
       },
+    }).then(() => {
+      dispatch(delArti(article_id));
+      history.replace("/");
     });
   };
 };
@@ -307,6 +312,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.searchRes = action.payload.articles;
       }),
+    [DEL_ARTI]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.article_id);
+        draft.articles = draft.articles.filter((v) => {
+          console.log(draft.articles);
+        });
+      }),
   },
   initialState
 );
@@ -322,4 +334,5 @@ export const actionCreators = {
   searchTagAPI,
   addLike,
   deleApi,
+  delArti,
 };
