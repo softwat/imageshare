@@ -13,6 +13,7 @@ import { getCookie } from "../shared/cookie";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const token = getCookie("token");
   const { id } = useParams();
   const user_info = useSelector((state) => state.user.user);
   const articles = useSelector((state) => state.article.articles);
@@ -21,14 +22,12 @@ const Detail = (props) => {
   });
   const article = articles[article_idx];
   const isLike = article?.liked_users.includes(user_info?.uid);
-
-  console.log(articles);
   console.log(article);
-  console.log(article?.liked_users);
+  console.log(article.article_id);
   console.log(user_info.uid);
-  // console.log(id);
+  console.log(token);
 
-  // console.log(article?.liked_users);
+  console.log(article.liked_users.includes(user_info.uid));
 
   React.useEffect(() => {
     if (article) {
@@ -50,9 +49,9 @@ const Detail = (props) => {
             <ImgWrap image_url={article?.image_url} />
             <div className="like_tag_wrap">
               <LikeIt
-                article={article}
+                article_id={article?.article_id}
+                uid={user_info?.uid}
                 liked_users={article?.liked_users}
-                isLike={isLike}
               />
               <TagList tags={article?.tags} />
             </div>
