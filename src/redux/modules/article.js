@@ -101,7 +101,6 @@ const searchTagAPI = (keyword, token) => {
             },
         })
             .then(({ data }) => {
-                console.log(data);
                 const _articles = [];
                 data.forEach(d => _articles.push(d));
                 dispatch(seachTag(_articles));

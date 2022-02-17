@@ -21,7 +21,7 @@ const ImgInfo = props => {
     const articles = useSelector(state => state.article.articles);
 
     React.useEffect(() => {
-        console.log(articles);
+        // console.log(articles);
     }, [liked_users]);
     return (
         <React.Fragment>
