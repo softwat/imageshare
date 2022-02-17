@@ -1,19 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { actionCreators as acticleActions } from '../redux/modules/article';
+import { getCookie } from '../shared/cookie';
+
+import { actionCreators as articleActions } from '../redux/modules/article.js';
 
 const Toggle = props => {
     const { history } = props;
     const dispatch = useDispatch();
+    const { articles } = useSelector(state => state.article);
+
     const mineClick = () => {
         history.push('/myprofile/mylist');
-        dispatch(acticleActions.getMyArticleAPI());
+        dispatch(articleActions.getArticleAPI(getCookie()));
+        dispatch(articleActions.getMyArticle(articles));
     };
     const likeClick = () => {
         history.push('/myprofile/mylike');
-        dispatch(acticleActions.getMyLikeAPI());
+        // dispatch(acticleActions.getArticleAPI());
+        // dispatch(acticleActions.getMyLikeAPI());
     };
     return (
         <RadioToolBar>

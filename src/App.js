@@ -33,6 +33,8 @@ function App() {
             <Route path="/" component={Header}></Route>
             <Route path="/" exact component={Main}></Route>
             <Route path="/myprofile" exact component={MyProfile}></Route>
+            <Route path="/myprofile/mylist" exact component={MyList}></Route>
+            <Route path="/myprofile/mylike" exact component={MyLike}></Route>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/create" exact component={Create} />

@@ -32,7 +32,7 @@ const ImgList = props => {
         }
     }, []);
 
-    return history.location.pathname === '/myprofile' ? (
+    return history.location.pathname === '/myprofile/mylist' ? (
         <React.Fragment>
             <Masonry
                 // className="image-list"

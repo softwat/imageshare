@@ -2,23 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookie } from '../shared/cookie';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
-import { ImgContainer, Toggle } from './index.js';
+import { ImgList, ImgContainer, Toggle } from './index.js';
 
 const MyList = props => {
     const dispatch = useDispatch();
 
     const { history } = props;
-    const myArticles = useSelector(state => state.article.myArticles);
-    console.log(myArticles);
+    const { articles } = useSelector(state => state.article);
+    const { user } = useSelector(state => state.user);
+    const _myArticles = useSelector(state => state.article.myArticles);
+    const [myArticles, setMyArticle] = React.useState();
 
     React.useEffect(() => {
-        if (myArticles) {
+        if (myArticles?.length) {
             return;
         }
-        dispatch(articleActions.getMyArticleAPI());
+        dispatch(articleActions.getArticleAPI(getCookie('token')));
+        console.log(articles);
+        dispatch(articleActions.getMyArticle(articles));
+        setMyArticle(_myArticles.filter(el => el.writer_id === user.uid));
+        console.log(myArticles);
     }, []);
 
     return (
@@ -26,7 +33,7 @@ const MyList = props => {
             <Toggle history={history} />
             <h1>내가 올렸어요</h1>
             {myArticles && (
-                <ImageList className="image-list">
+                <ImgList className="image-list" history={history}>
                     {myArticles.map((myArticle, idx) => {
                         return (
                             <ImgContainer
@@ -36,7 +43,7 @@ const MyList = props => {
                             />
                         );
                     })}
-                </ImageList>
+                </ImgList>
             )}
         </React.Fragment>
     );

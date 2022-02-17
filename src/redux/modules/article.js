@@ -125,25 +125,25 @@ const getOneArticleAPI = (id, token) => {
     };
 };
 
-const getMyArticleAPI = () => {
-    return function (dispatch) {
-        apis.getMyArticle().then(({ data }) => {
-            const _articles = [];
-            data.forEach(d => _articles.push(d));
-            dispatch(getMyArticle(_articles));
-        });
-    };
-};
+// const getMyArticleAPI = () => {
+//     return function (dispatch) {
+//         apis.getMyArticle().then(({ data }) => {
+//             const _articles = [];
+//             data.forEach(d => _articles.push(d));
+//             dispatch(getMyArticle(_articles));
+//         });
+//     };
+// };
 
-const getMyLikeAPI = () => {
-    return function (dispatch) {
-        apis.getMyLike().then(({ data }) => {
-            const _articles = [];
-            data.forEach(d => _articles.push(d));
-            dispatch(getMyLike(_articles));
-        });
-    };
-};
+// const getMyLikeAPI = () => {
+//     return function (dispatch) {
+//         apis.getMyLike().then(({ data }) => {
+//             const _articles = [];
+//             data.forEach(d => _articles.push(d));
+//             dispatch(getMyLike(_articles));
+//         });
+//     };
+// };
 
 const createArtiApi = (tags, token) => {
     return function (dispatch, getState, { history }) {
@@ -246,7 +246,6 @@ export default handleActions(
         [GET_ARTICLE]: (state, action) =>
             produce(state, draft => {
                 draft.articles = action.payload.articles;
-                // console.log(draft.articles);
             }),
         [GET_MY_ARTICLE]: (state, action) =>
             produce(state, draft => {
@@ -270,8 +269,7 @@ export const actionCreators = {
     getOneArticleAPI,
     createArtiApi,
     addTags,
-    getMyArticleAPI,
-    getMyLikeAPI,
     searchTagAPI,
     addLike,
+    getMyArticle,
 };
