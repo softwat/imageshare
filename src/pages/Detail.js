@@ -39,7 +39,7 @@ const Detail = (props) => {
       <BlockWrap>
         {article && (
           <>
-            <PostInfo {...article} uid={user_info.uid} />
+            <PostInfo {...article} uid={user_info?.uid} />
             <ImgWrap image_url={article?.image_url} />
             <div className="like_tag_wrap">
               <LikeIt

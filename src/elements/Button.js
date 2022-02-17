@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { text, _onClick, is_abs, margin, width, padding, liked } = props;
+  const { text, _onClick, is_abs, margin, width, padding, liked, children } =
+    props;
 
   if (is_abs) {
     return (
       <React.Fragment>
         <LikeButton onClick={_onClick} value={liked}>
-          {liked}
+          {children}
         </LikeButton>
       </React.Fragment>
     );
@@ -46,15 +47,14 @@ const ElButton = styled.button`
   border: solid 1px #ccc;
   padding: ${(props) => props.padding};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  background-color:#fff;
+  /* background-color:#fff; */
   transition: all 0.3s;
 `;
 
 const LikeButton = styled.button`
   opacity: 0;
-  width: 50px;
+  width: 65px;
   height: 50px;
-  background-color: pink;
   color: #ffffff;
   box-sizing: border-box;
   /* font-size: 36px; */
@@ -66,8 +66,11 @@ const LikeButton = styled.button`
   vertical-align: middle;
   border: none;
   border-radius: 50px;
-  &:hover {
-    background-color: #ff54b0;
+  background-color: transparent;
+
+  svg {
+    width: 80px;
+    height: 80px;
   }
 `;
 
