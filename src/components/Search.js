@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
@@ -11,6 +12,7 @@ const Search = props => {
     const { history } = props;
     const dispatch = useDispatch();
     let token = getCookie('token');
+    const { searchRes } = useSelector(state => state.article);
 
     const [keyword, setKeyword] = React.useState();
     const keywordInput = React.useRef();
@@ -20,7 +22,8 @@ const Search = props => {
     const btnHandler = () => {
         console.log(keyword);
         dispatch(articleActions.searchTagAPI(keyword, token));
-        // history.push(`/search`);
+        console.log(searchRes);
+        history.push(`/result`);
     };
     return (
         <SearchContainer>

@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Masonry from 'react-masonry-css';
+import '../App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
-import { ImgContainer, Toggle } from './index.js';
+import { ImgList, ImgContainer, Toggle } from './index.js';
 
 const Result = props => {
     const dispatch = useDispatch();
@@ -21,11 +23,24 @@ const Result = props => {
         dispatch(articleActions.getMyArticleAPI());
     }, []);
 
+    const breakpointColumnsObj = {
+        default: 4,
+        1600: 3,
+        1200: 2,
+        900: 2,
+        500: 1,
+    };
+
     return (
         <React.Fragment>
             <h1>검색결과입니다</h1>
             {searchRes && (
-                <ImageList className="image-list">
+                <Masonry
+                    // className="image-list"
+                    breakpointCols={breakpointColumnsObj}
+                    className="my-masonry-grid"
+                    columnClassName="my-masonry-grid_column"
+                >
                     {searchRes.map((myArticle, idx) => {
                         return (
                             <ImgContainer
@@ -35,7 +50,7 @@ const Result = props => {
                             />
                         );
                     })}
-                </ImageList>
+                </Masonry>
             )}
         </React.Fragment>
     );
