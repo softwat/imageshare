@@ -22,12 +22,6 @@ const Detail = (props) => {
   });
   const article = articles[article_idx];
   const isLike = article?.liked_users.includes(user_info?.uid);
-  console.log(article);
-  console.log(article.article_id);
-  console.log(user_info.uid);
-  console.log(token);
-
-  console.log(article.liked_users.includes(user_info.uid));
 
   React.useEffect(() => {
     if (article) {
@@ -45,7 +39,7 @@ const Detail = (props) => {
       <BlockWrap>
         {article && (
           <>
-            <PostInfo {...article} />
+            <PostInfo {...article} uid={user_info.uid} />
             <ImgWrap image_url={article?.image_url} />
             <div className="like_tag_wrap">
               <LikeIt

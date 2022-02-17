@@ -29,7 +29,7 @@ const Create = (props) => {
     }
   }, []);
 
-  if (user_info.is_login === false) {
+  if (getCookie("token") === false) {
     alert("로그인 후 게시글을 작성 할 수 있습니다.");
     history.replace("/");
   }
