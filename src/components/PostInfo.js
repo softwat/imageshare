@@ -18,13 +18,15 @@ const PostInfo = ({
       <div>{writer_nickname}</div>
       <span>{created_date}</span>
 
-      {writer_id === uid && (
+      {writer_id === uid ? (
         <button
           onClick={() => {
             dispatch(articleActions.deleApi(article_id, token));
           }}>
           삭제
         </button>
+      ) : (
+        ""
       )}
     </PostInfoS>
   );
