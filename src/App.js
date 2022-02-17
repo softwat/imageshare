@@ -17,6 +17,7 @@ function App() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     let token = getCookie('token');
+    const myLikes = useSelector(state => state.article.myLikes);
 
     React.useEffect(() => {
         if (user?.is_login) {
@@ -26,6 +27,7 @@ function App() {
         } else {
             dispatch(userActions.checkLoginApi(token));
         }
+        console.log(myLikes);
     }, []);
 
     return (

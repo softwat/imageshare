@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import Masonry from 'react-masonry-css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getCookie } from '../shared/cookie';
+
+import MyImgContainer from './MyImgContainer';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
@@ -13,10 +16,18 @@ const MyList = props => {
     const token = getCookie('token');
 
     const { history } = props;
-    const { articles } = useSelector(state => state.article);
+    const myArticles = useSelector(state => state.article.myArticles);
+    const breakpointColumnsObj = {
+        default: 4,
+        1600: 3,
+        1200: 2,
+        900: 2,
+        500: 1,
+    };
 
+    console.log(myArticles);
     React.useEffect(() => {
-        if (articles?.length) {
+        if (myArticles?.length) {
             return;
         }
         dispatch(articleActions.getMyArticleAPI(token));
@@ -26,18 +37,27 @@ const MyList = props => {
         <React.Fragment>
             <Toggle history={history} />
             <h1>내가 올렸어요</h1>
-            {articles && (
-                <ImgList className="image-list" history={history}>
-                    {articles.map((article, idx) => {
-                        return (
-                            <ImgContainer
-                                key={idx}
-                                {...article}
-                                history={history}
-                            />
-                        );
-                    })}
-                </ImgList>
+            {myArticles ? (
+                <React.Fragment>
+                    <Masonry
+                        // className="image-list"
+                        breakpointCols={breakpointColumnsObj}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column"
+                    >
+                        {myArticles.map((article, idx) => {
+                            return (
+                                <ImgContainer
+                                    key={idx}
+                                    {...article}
+                                    history={history}
+                                />
+                            );
+                        })}
+                    </Masonry>
+                </React.Fragment>
+            ) : (
+                {}
             )}
         </React.Fragment>
     );

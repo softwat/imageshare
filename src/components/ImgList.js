@@ -6,6 +6,8 @@ import '../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCookie } from '../shared/cookie';
 
+import MyImgContainer from './MyImgContainer';
+
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
 import { ImgContainer } from './index.js';
@@ -32,7 +34,27 @@ const ImgList = props => {
         }
     }, []);
 
-    return history.location.pathname === '/myprofile/mylist' ? (
+    return history.location.pathname === '/myprofile/mylist' ||
+        history?.location?.pathname === '/myprofile/mylike' ? (
+        <React.Fragment>
+            <Masonry
+                // className="image-list"
+                breakpointCols={breakpointColumnsObj}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+            >
+                {articles.map((article, idx) => {
+                    return (
+                        <ImgContainer
+                            key={idx}
+                            {...article}
+                            history={history}
+                        />
+                    );
+                })}
+            </Masonry>
+        </React.Fragment>
+    ) : history.location.pathname === '/myprofile/mylike' ? (
         <React.Fragment>
             <Masonry
                 // className="image-list"

@@ -10,7 +10,7 @@ import { ImgInfo, TagList } from './index';
 import { ReactComponent as LikeItSvg } from '../svg/like_it_white.svg';
 import { ReactComponent as LikeItSvgActive } from '../svg/like_it_active.svg';
 
-const ImgContainer = props => {
+const MyImgContainer = props => {
     const { history } = props;
     const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const ImgContainer = props => {
 
     React.useEffect(() => {
         console.log(likeNum);
-        console.log(props);
+        console.log(props, 'myimgcontainer');
         if (props.liked_users?.includes(user?.uid)) {
             dispatch(articleActions.addLike(props.article_id));
         }
@@ -139,4 +139,4 @@ const Img = styled.img`
     object-fit: fill;
 `;
 
-export default ImgContainer;
+export default MyImgContainer;
