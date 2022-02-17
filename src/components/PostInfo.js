@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-
-const PostInfo = ({ writer_id, writer_nickname, created_date }) => {
+import { useDispatch } from "react-redux";
+import { actionCreators as articleActions } from "../redux/modules/article";
+import { getCookie } from "../shared/cookie";
+const PostInfo = ({ article_id, writer_id, writer_nickname, created_date }) => {
+  const dispatch = useDispatch();
+  const token = getCookie("token");
   return (
     <PostInfoS>
       <div>{writer_nickname}</div>
       <span>{created_date}</span>
-      <button>삭제</button>
+      <button
+        onClick={() => {
+          dispatch(articleActions.deleApi(article_id, token));
+        }}>
+        삭제
+      </button>
     </PostInfoS>
   );
 };
