@@ -120,6 +120,7 @@ export default handleActions(
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         delCookie("is_login");
+        delCookie("token");
         draft.user = null;
         draft.is_login = false;
       }),
