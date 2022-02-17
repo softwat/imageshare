@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Search } from './index.js';
 import { Logo, Button, Input } from '../elements/index.js';
+import { getCookie } from '../shared/cookie';
 
 import { actionCreators as userActions } from '../redux/modules/user';
 
@@ -13,13 +14,14 @@ const Header = props => {
     const user = useSelector(state => state.user);
     const goProfile = () => props.history.push('/myprofile');
     const goSignup = () => props.history.push('/signup');
+    const token = getCookie('token');
 
     return (
         <React.Fragment>
             <HeaderContainer>
                 <Logo {...props} />
                 <Search flex-grow="1" history={history} />
-                {!user.is_login ? (
+                {!token ? (
                     <React.Fragment>
                         <Button
                             width="90px"

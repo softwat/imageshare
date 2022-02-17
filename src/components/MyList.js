@@ -10,35 +10,29 @@ import { ImgList, ImgContainer, Toggle } from './index.js';
 
 const MyList = props => {
     const dispatch = useDispatch();
+    const token = getCookie('token');
 
     const { history } = props;
     const { articles } = useSelector(state => state.article);
-    const { user } = useSelector(state => state.user);
-    const _myArticles = useSelector(state => state.article.myArticles);
-    const [myArticles, setMyArticle] = React.useState();
 
     React.useEffect(() => {
-        if (myArticles?.length) {
+        if (articles?.length) {
             return;
         }
-        dispatch(articleActions.getArticleAPI(getCookie('token')));
-        console.log(articles);
-        dispatch(articleActions.getMyArticle(articles));
-        setMyArticle(_myArticles.filter(el => el.writer_id === user.uid));
-        console.log(myArticles);
+        dispatch(articleActions.getMyArticleAPI(token));
     }, []);
 
     return (
         <React.Fragment>
             <Toggle history={history} />
             <h1>내가 올렸어요</h1>
-            {myArticles && (
+            {articles && (
                 <ImgList className="image-list" history={history}>
-                    {myArticles.map((myArticle, idx) => {
+                    {articles.map((article, idx) => {
                         return (
                             <ImgContainer
                                 key={idx}
-                                {...myArticle}
+                                {...article}
                                 history={history}
                             />
                         );
