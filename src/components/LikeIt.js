@@ -7,42 +7,35 @@ import { ReactComponent as LikeItSvgActive } from "../svg/like_it_active.svg";
 import { getCookie } from "../shared/cookie";
 
 const LikeIt = (props) => {
-  const { article, liked_users, isLike } = props;
+  const { article_id, uid, liked_users } = props;
   const dispatch = useDispatch();
-  const user_info = useSelector((state) => state.user.user);
   const { user } = useSelector((state) => state.user);
-  const [_isLike, setIsLike] = React.useState(isLike);
-  const token = getCookie("token");
-  console.log(article);
   const myLikes = useSelector((state) => state.article.myLikes);
+  const [isLike, setIsLike] = React.useState(
+    myLikes.filter((el) => el === article_id).length
+  );
+  const token = getCookie("token");
+
   const clickLike = () => {
-    dispatch(articleActions.likeApi(props.article_id, user_info.uid, token));
-    setIsLike(!isLike);
+    dispatch(articleActions.likeApi(article_id, uid, token));
   };
+
+  console.log(myLikes.filter((el) => el === article_id).length);
 
   React.useEffect(() => {
     if (props.liked_users?.includes(user.uid)) {
-      dispatch(articleActions.addLike(props.article_id));
+      dispatch(articleActions.addLike(article_id));
     }
   }, []);
-  console.log(liked_users.length);
 
   return (
     <LikeS
       onClick={() => {
         clickLike();
+        setIsLike(!isLike);
       }}>
-      {myLikes.filter((el) => el === props.article_id).length ? (
-        <>
-          <LikeItSvgActive />
-          <span>{liked_users.length}</span>
-        </>
-      ) : (
-        <>
-          <LikeItSvg />
-          <span>{liked_users.length}</span>
-        </>
-      )}
+      {isLike ? <LikeItSvgActive /> : <LikeItSvg />}
+      <span>{liked_users.length}</span>
     </LikeS>
   );
 };
