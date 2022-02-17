@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookie } from '../shared/cookie';
 
 import { actionCreators as articleActions } from '../redux/modules/article.js';
 
@@ -9,29 +10,29 @@ import { ImgContainer, Toggle } from './index.js';
 
 const MyLike = props => {
     const dispatch = useDispatch();
+    const token = getCookie('token');
 
     const { history } = props;
-    const myLikes = useSelector(state => state.article.myLikes);
-    console.log(myLikes);
+    const { articles } = useSelector(state => state.article);
 
     React.useEffect(() => {
-        if (myLikes) {
+        if (articles?.length) {
             return;
         }
-        // dispatch(articleActions.getMyLikeAPI());
+        dispatch(articleActions.getLikeArticleAPI(token));
     }, []);
 
     return (
         <React.Fragment>
             <Toggle history={history} />
             <h1>내가 좋아요</h1>
-            {myLikes && (
+            {articles && (
                 <ImageList className="image-list">
-                    {myLikes.map((myLike, idx) => {
+                    {articles.map((article, idx) => {
                         return (
                             <ImgContainer
                                 key={idx}
-                                {...myLike}
+                                {...article}
                                 history={history}
                             />
                         );

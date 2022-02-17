@@ -18,13 +18,13 @@ const getArticle = createAction(GET_ARTICLE, _articles => ({
     articles: _articles,
 }));
 
-const getMyArticle = createAction(GET_MY_ARTICLE, _articles => ({
-    myArticles: _articles,
-}));
+// const getMyArticle = createAction(GET_MY_ARTICLE, _articles => ({
+//     myArticles: _articles,
+// }));
 
-const getMyLike = createAction(GET_MY_LIKE, _articles => ({
-    myLikes: _articles,
-}));
+// const getMyLike = createAction(GET_MY_LIKE, _articles => ({
+//     myLikes: _articles,
+// }));
 
 const addArticle = createAction(ADD_ARTICLE, articles => ({ articles }));
 const addLike = createAction(ADD_LIKE, myLikes => ({ myLikes }));
@@ -54,6 +54,54 @@ const getArticleAPI = token => {
         axios({
             method: 'get',
             url: 'http://3.38.153.67/articles',
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+            .then(({ data }) => {
+                const _articles = [];
+                data.forEach(d => _articles.push(d));
+                const _articles_sort = _articles.sort(
+                    (a, b) => b.article_id - a.article_id
+                );
+                dispatch(getArticle(_articles_sort));
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('게시물 가져오기 실패!');
+            });
+    };
+};
+const getMyArticleAPI = token => {
+    return function (dispatch) {
+        console.log('get my article!!');
+        axios({
+            method: 'get',
+            url: 'http://3.38.153.67/myarticles',
+            headers: {
+                Authorization: `${token}`,
+            },
+        })
+            .then(({ data }) => {
+                const _articles = [];
+                data.forEach(d => _articles.push(d));
+                const _articles_sort = _articles.sort(
+                    (a, b) => b.article_id - a.article_id
+                );
+                dispatch(getArticle(_articles_sort));
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('게시물 가져오기 실패!');
+            });
+    };
+};
+const getLikeArticleAPI = token => {
+    return function (dispatch) {
+        console.log('get article i like!!');
+        axios({
+            method: 'get',
+            url: 'http://3.38.153.67/mylike',
             headers: {
                 Authorization: `${token}`,
             },
@@ -255,11 +303,12 @@ export default handleActions(
 
 export const actionCreators = {
     getArticleAPI,
+    getMyArticleAPI,
+    getLikeArticleAPI,
     likeApi,
     getOneArticleAPI,
     createArtiApi,
     addTags,
     searchTagAPI,
     addLike,
-    getMyArticle,
 };

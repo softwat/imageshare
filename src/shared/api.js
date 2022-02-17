@@ -22,12 +22,12 @@ export const apis = {
             password: pwd,
         }),
 
-    logout: () => api.post(TEST_URL('/user/logout')),
+    logout: () => api.post('http://3.38.153.67/user/logout'),
 
     uploadImageUrl: url => api.post(TEST_URL('imageUrl'), { image_url: url }),
 
-    getMyArticle: () => api.get(TEST_URL('myarticle')),
-    getMyLike: () => api.get(TEST_URL('mylike')),
+    getMyArticle: () => api.get('http://3.38.153.67/myarticle'),
+    getMyLike: () => api.get('http://3.38.153.67/myarticlemylike'),
 
     searchTag: _keyword => {
         const keyword = encodeURI(encodeURIComponent(_keyword));
