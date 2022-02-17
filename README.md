@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# 🤳🏻 PIC!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</br>
+다양한 이미지를 구경하고 소통해보세요!
+</br>
+</br>
+[이미지 로고는 여기]
+</br>
+</br>
+🔗 웹사이트 주소 : http://ryuryuryuryu.shop.s3-website.ap-northeast-2.amazonaws.com
+</br>
+</br>
 
-## Available Scripts
+## 1. 제작 기간 & 팀원 소개
 
-In the project directory, you can run:
+</br>
 
-### `yarn start`
+🗓 2022.02.11 ~ 2022.02.17
+</br>
+</br>
+👥 FE 팀원
+유강현, 정재연
+</br>
+👥 BE 팀원
+구민주, 김정근, 최규원
+</br>
+</br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 2. 사용 기술 및 서버
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</br>
 
-### `yarn test`
+🛠 BE
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- JAVA, Spring, JWT, MySQL, CORS, EC2
 
-### `yarn build`
+</br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+🎨 FE
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- JavaScript, React, Axios, Firebase, S3
+  </br>
+  </br>
+  </br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. 팀 노션 페이지
 
-### `yarn eject`
+</br>
+</br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+🔗 https://www.notion.so/99-7-Week-06-13956b3b1dee4ef8a603dd1fd188c1d3
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</br>
+</br>
+</br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 4. 시연 영상
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</br>
+🔗 https://www.youtube.com/watch?v=yoxtgmjYTA8
+</br>
 
-## Learn More
+## 5. 핵심 기능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 🔐 로그인, 회원가입
 
-### Code Splitting
+- Spring Security, JWT 를 이용하여 로그이나 회원가입 기능을 구현하였습니다.
+- 서비스 사용성을 위해 회원가입 단계에 유저 닉네임을 추가하였습니다.
+- 이메일, ID, 닉네임은 중복 가입이 불가능합니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 👀 이미지 조회하기
 
-### Analyzing the Bundle Size
+- 미가입자, 가입자 모두 사진 조회 가능합니다.
+- 가입자는 내가 올린 이미지와 내가 좋아요 누른 이미지를 모아 볼 수 있습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### 🔖 이미지 태그
 
-### Making a Progressive Web App
+- 이미지는 태그로 검색할 수 있습니다.
+- 이미지 업로드 시 해쉬태그로 태그를 부여합니다. (ex. #멍멍이#귀여워#댕댕이)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### 💓 좋아요 기능
 
-### Advanced Configuration
+- 가입자는 마음에 드는 이미지에 좋아요 버튼을 누를 수 있습니다.
+- 이미지를 마우스로 호버할 경우 좋아요 수와 좋아요 버튼이 보입니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### 🎸 기타 기능
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 가입자는 자신의 게시글만 삭제할 수 있습니다. 본인의 게시글에만 삭제 버튼이 나타납니다.
